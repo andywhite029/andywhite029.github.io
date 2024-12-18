@@ -7,6 +7,12 @@
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     height: 60px;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -20,12 +26,17 @@
 }
 
 .nav-brand .logo {
-    height: 35px;
+    height: 40px;
     transition: transform 0.3s ease;
 }
 
 .nav-brand .logo:hover {
     transform: scale(1.05);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
 }
 
 .nav-menu ul {
@@ -159,6 +170,7 @@
 @media (max-width: 768px) {
     .navbar {
         height: 50px;
+        padding: 0 1.5rem;
     }
 
     .nav-toggle {
@@ -175,6 +187,7 @@
         transform: translateY(-100%);
         transition: transform 0.3s ease;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: block;
     }
 
     .nav-menu.active {
@@ -183,11 +196,12 @@
 
     .nav-menu ul {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 0;
     }
 
     .nav-menu li {
         width: 100%;
+        padding: 0 1.5rem;
     }
 
     .nav-menu a {
