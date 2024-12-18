@@ -19,7 +19,15 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.toggle('active');
     });
 
-    // 移动端下拉菜单
+    // 点击其他地方关闭菜单
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // 移动端下拉菜单处理
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('a');
         link.addEventListener('click', (e) => {
@@ -28,24 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 dropdown.classList.toggle('active');
             }
         });
-    });
-
-    // 点击导航链接时关闭菜单
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-    });
-
-    // 点击外部关闭菜单
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
     });
 
     // 作品集筛选功能
