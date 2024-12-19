@@ -248,7 +248,7 @@
                         <ul>
                             <li>熟练使用索尼、佳能等专业相机进行拍摄</li>
                             <li>掌握人像、风光、产品等多种摄影技巧</li>
-                            <li>精通达芬奇、pr、剪映等视频剪辑调色���件</li>
+                            <li>精通达芬奇、pr、剪映等视频剪辑调色���</li>
                             <li>具备专业的构图、用光和后期处理能力</li>
                             <li>有使用无人机，电影机等特种拍摄能力</li>
                         </ul>
@@ -299,7 +299,7 @@
                 <button class="portfolio-tab" data-category="photo">摄影作品</button>
                 <button class="portfolio-tab" data-category="video">视频作品</button>
                 <button class="portfolio-tab" data-category="news">新闻报道</button>
-                <button class="portfolio-tab" data-category="commercial">���业案例</button>
+                <button class="portfolio-tab" data-category="commercial">商业案例</button>
             </div>
             <div class="portfolio-grid">
                 <!-- 摄影作品 -->
@@ -397,12 +397,32 @@
                     <img src="images/portfolio/commercial2.jpg" alt="广告片">
                     <div class="portfolio-overlay">
                         <h3>旅游宣传片</h3>
-                        <p>某景区形象宣���视频制作</p>
+                        <p>某景区形象宣传视频制作</p>
                         <div class="portfolio-tags">
                             <span>广告</span>
                             <span>旅游</span>
                         </div>
                         <a href="#" class="portfolio-btn">观看视频</a>
+                    </div>
+                </div>
+
+                <!-- 在作品集的视频作品部分添加 -->
+                <div class="portfolio-item" data-category="video">
+                    <img src="images/portfolio/s.png" alt="三九演义">
+                    <div class="portfolio-overlay">
+                        <h3>《三九演义》</h3>
+                        <p>2024年中国大学生广告艺术大赛获奖作品</p>
+                        <div class="portfolio-tags">
+                            <span>获奖作品</span>
+                            <span>国家级优秀奖</span>
+                            <span>短视频</span>
+                        </div>
+                        <a href="images/video/WeChat_20241219130752.mp4" 
+                           class="portfolio-btn" 
+                           data-video="true"
+                           target="_blank">
+                            观看视频
+                        </a>
                     </div>
                 </div>
             </div>
@@ -454,5 +474,16 @@
 
     <script src="js/main.js"></script>
     <script src="js/carousel.js"></script>
+
+    <!-- 在 body 标签结束前添加视频播放器模态框 -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="close-video">&times;</span>
+            <video id="videoPlayer" controls>
+                <source src="" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+        </div>
+    </div>
 </body>
 </html> 

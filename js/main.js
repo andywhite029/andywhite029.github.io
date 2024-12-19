@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 实习经历轮播图
+    // 实习经历轮���图
     function initExperienceCarousel() {
         const slides = document.querySelectorAll('.exp-slide');
         const dotsContainer = document.querySelector('.exp-carousel-dots');
@@ -104,4 +104,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 页面加载完成后初始化轮播图
     initExperienceCarousel();
+
+    // 视频播放器功能
+    const videoModal = document.getElementById('videoModal');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const closeVideo = document.querySelector('.close-video');
+    const videoButtons = document.querySelectorAll('.portfolio-btn[data-video="true"]');
+
+    // 打开视频模态框
+    videoButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const videoUrl = button.getAttribute('href');
+            videoPlayer.src = videoUrl;
+            videoModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+            videoPlayer.play();
+        });
+    });
+
+    // 关闭视频模态框
+    closeVideo.addEventListener('click', () => {
+        videoModal.style.display = 'none';
+        videoPlayer.pause();
+        videoPlayer.src = '';
+        document.body.style.overflow = 'auto';
+    });
+
+    // 点击模态框外部关闭
+    videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) {
+            videoModal.style.display = 'none';
+            videoPlayer.pause();
+            videoPlayer.src = '';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // ESC键关闭模态框
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoModal.style.display === 'block') {
+            videoModal.style.display = 'none';
+            videoPlayer.pause();
+            videoPlayer.src = '';
+            document.body.style.overflow = 'auto';
+        }
+    });
 }); 
