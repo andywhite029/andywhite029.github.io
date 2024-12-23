@@ -193,7 +193,7 @@ h2 {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    aspect-ratio: 16/9;
+    aspect-ratio: 4/3;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: all 0.4s ease;
     transform: translateY(0);
@@ -320,21 +320,45 @@ h2 {
         opacity: 1;
         background: linear-gradient(
             to top,
-            rgba(0,0,0,0.8) 0%,
-            rgba(0,0,0,0.4) 60%,
-            rgba(0,0,0,0) 100%
+            rgba(0,0,0,0.9) 0%,
+            rgba(0,0,0,0.7) 50%,
+            rgba(0,0,0,0.4) 100%
         );
     }
 
-    .portfolio-overlay h3,
-    .portfolio-overlay p,
-    .portfolio-overlay .portfolio-tags,
-    .portfolio-overlay .portfolio-btn {
+    .portfolio-overlay h3 {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        margin-bottom: 0.3rem;
         transform: translateY(0);
     }
 
-    .portfolio-item[data-category="photo"] {
-        grid-column: span 1; /* 在小屏幕上，摄影作品恢复正常大小 */
+    .portfolio-overlay p {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        transform: translateY(0);
+    }
+
+    .portfolio-tags {
+        margin-bottom: 0.8rem;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        transform: translateY(0);
+    }
+
+    .portfolio-tags span {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .portfolio-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        transform: translateY(0);
+    }
+
+    .portfolio-item {
+        aspect-ratio: 4/3;
     }
 }
 
@@ -583,7 +607,7 @@ footer {
     color: white;
 }
 
-/* 添加视频播放图标 */
+/* 添加视频播放图 */
 [data-video] .portfolio-btn::before {
     content: '\f04b';
     font-family: 'Font Awesome 5 Free';
@@ -591,7 +615,7 @@ footer {
     margin-right: 0.5rem;
 }
 
-/* 实习和活动经���样式 */
+/* 实习和活动经验样式 */
 .timeline-role {
     color: #007bff;
     font-size: 0.95rem;
