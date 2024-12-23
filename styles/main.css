@@ -195,8 +195,9 @@ h2 {
     overflow: hidden;
     aspect-ratio: 16/9;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: all 0.4s ease;
-    transform: translateY(0);
+    transition: transform 0.4s ease;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
 }
 
 .portfolio-item:hover {
@@ -650,7 +651,7 @@ footer {
     font-weight: 600;
 }
 
-/* 时间轴连接线 */
+/* 时间连接线 */
 .timeline::before {
     content: '';
     position: absolute;
@@ -974,4 +975,54 @@ footer {
 
 .toast.show {
     opacity: 1;
+}
+
+/* 添加性能优化的媒体查询 */
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-item {
+        transition: none;
+    }
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease;
+}
+
+.custom-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+}
+
+.social-name {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.custom-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover .custom-icon {
+    color: #007bff;
 } 

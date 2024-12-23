@@ -11,8 +11,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+}
+
+@supports not (backdrop-filter: blur(10px)) and 
+  not (-webkit-backdrop-filter: blur(10px)) {
+    .navbar {
+        background: rgba(255, 255, 255, 0.98);
+    }
 }
 
 .navbar.scrolled {

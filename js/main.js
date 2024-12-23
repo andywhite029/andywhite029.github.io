@@ -5,8 +5,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('.dropdown');
     const backToTop = document.querySelector('.back-to-top');
 
+    // 优化事件监听器，添加防抖
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
     // 滚动效果
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', debounce(() => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
@@ -17,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             backToTop.classList.remove('visible');
         }
-    });
+    }, 100));
 
     // 汉堡菜单点击事件
     navToggle.addEventListener('click', () => {
@@ -105,7 +118,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // 自动轮播
-        setInterval(nextSlide, 5000);
+        let carouselInterval;
+
+        function startCarousel() {
+            carouselInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopCarousel() {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+            }
+        }
+
+        // 在组件卸载时清理
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopCarousel();
+            } else {
+                startCarousel();
+            }
+        });
+
+        // 页面加载完成后初始化轮播图
+        startCarousel();
     }
 
     // 页面加载完成后初始化轮播图
@@ -135,7 +170,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 videoPlayer.src = src;
                 videoModal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
-                videoPlayer.play();
+                videoPlayer.play().catch(error => {
+                    console.error('Video playback error:', error);
+                    showToast(error.name === 'NotAllowedError' 
+                        ? '请允许自动播放以观看视频'
+                        : '视频播放失败，请重试');
+                });
             }
         });
     });
@@ -278,7 +318,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.body.style.overflow = 'hidden';
                     
                     videoPlayer.play().catch(error => {
-                        showToast('视频播放失败，请重试');
+                        console.error('Video playback error:', error);
+                        showToast(error.name === 'NotAllowedError' 
+                            ? '请允许自动播放以观看视频'
+                            : '视频播放失败，请重试');
                     });
                 } catch (error) {
                     showToast(error.message);
