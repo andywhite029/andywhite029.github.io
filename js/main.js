@@ -187,4 +187,117 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
+
+    // 图片加载错误处理
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.onerror = function() {
+            this.src = 'images/placeholder.jpg'; // 添加默认图片
+        };
+    });
+
+    // 视频加载错误处理
+    if (videoPlayer) {
+        videoPlayer.onerror = function() {
+            alert('视频加载失败，请稍后重试');
+        };
+    }
+
+    // 添加加载状态指示器
+    function showLoader() {
+        const loader = document.createElement('div');
+        loader.className = 'loader-container';
+        loader.innerHTML = '<div class="loader"></div>';
+        document.body.appendChild(loader);
+    }
+
+    function hideLoader() {
+        const loader = document.querySelector('.loader-container');
+        if (loader) {
+            loader.remove();
+        }
+    }
+
+    // 显示提示消息
+    function showToast(message, duration = 3000) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 10);
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, duration);
+    }
+
+    // 图片懒加载
+    function lazyLoadImages() {
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.onload = () => {
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    };
+                    img.onerror = () => {
+                        img.src = 'images/placeholder.jpg';
+                        showToast('图片加载失败');
+                        observer.unobserve(img);
+                    };
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    }
+
+    // 优化视频加载
+    function optimizeVideoLoading() {
+        const videoButtons = document.querySelectorAll('[data-type="video"]');
+        videoButtons.forEach(button => {
+            button.addEventListener('click', async (e) => {
+                e.preventDefault();
+                showLoader();
+                
+                try {
+                    const videoSrc = button.dataset.src;
+                    const response = await fetch(videoSrc);
+                    if (!response.ok) throw new Error('视频加载失败');
+
+                    const videoPlayer = document.getElementById('videoPlayer');
+                    videoPlayer.src = videoSrc;
+                    videoModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    
+                    videoPlayer.play().catch(error => {
+                        showToast('视频播放失败，请重试');
+                    });
+                } catch (error) {
+                    showToast(error.message);
+                } finally {
+                    hideLoader();
+                }
+            });
+        });
+    }
+
+    // 错误处理和用户反馈
+    window.addEventListener('error', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.target.src = 'images/placeholder.jpg';
+            showToast('图片加载失败');
+        }
+    }, true);
+
+    // 初始化
+    lazyLoadImages();
+    optimizeVideoLoading();
 }); 

@@ -828,4 +828,150 @@ footer {
     height: auto;
     max-height: 90vh;
     background: #000;
+}
+
+/* 联系方式部分样式 */
+.contact-section {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.contact-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.contact-item p {
+    color: #666;
+}
+
+.contact-item a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #007bff;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .contact-item {
+        padding: 1.5rem;
+    }
+}
+
+/* 优化移动端样式 */
+@media (max-width: 768px) {
+    .portfolio-overlay {
+        opacity: 1;
+        padding: 1rem;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,0.95) 0%,
+            rgba(0,0,0,0.8) 40%,
+            rgba(0,0,0,0.6) 70%,
+            rgba(0,0,0,0.4) 100%
+        );
+        justify-content: flex-start;
+    }
+
+    .portfolio-overlay * {
+        transform: translateY(0) !important; /* 确保所有元素在移动端不会被动画影响 */
+    }
+}
+
+/* 修复模态框层级问题 */
+.modal {
+    z-index: 1100;
+}
+
+.close-modal {
+    z-index: 1101;
+}
+
+/* 加载状态指示器样式 */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 提示消息样式 */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    z-index: 2001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
 } 

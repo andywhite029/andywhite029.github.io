@@ -1,15 +1,15 @@
 const CACHE_NAME = 'personal-website-v1';
 const urlsToCache = [
-    '/',
-    '/index0.html',
-    '/index01.html',
-    '/index02.html',
-    '/styles/main.css',
-    '/styles/navbar.css',
-    '/styles/carousel.css',
-    '/js/main.js',
-    '/js/carousel.js',
-    '/images/logo.jpg'
+    './',
+    './index0.html',
+    './index01.html',
+    './index02.html',
+    './styles/main.css',
+    './styles/navbar.css',
+    './styles/carousel.css',
+    './js/main.js',
+    './js/carousel.js',
+    './images/logo.jpg'
 ];
 
 self.addEventListener('install', event => {
