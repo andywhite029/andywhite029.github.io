@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const dropdowns = document.querySelectorAll('.dropdown');
+    const backToTop = document.querySelector('.back-to-top');
 
     // 滚动效果
     window.addEventListener('scroll', () => {
@@ -10,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
+        }
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
         }
     });
 
@@ -69,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 实习经历轮���图
+    // 实习经历轮播图
     function initExperienceCarousel() {
         const slides = document.querySelectorAll('.exp-slide');
         const dotsContainer = document.querySelector('.exp-carousel-dots');
@@ -149,5 +155,13 @@ document.addEventListener('DOMContentLoaded', function() {
             videoPlayer.src = '';
             document.body.style.overflow = 'auto';
         }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 }); 

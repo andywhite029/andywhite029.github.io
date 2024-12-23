@@ -1,0 +1,67 @@
+/* 二级页面特有样式 */
+.subpage-content {
+    padding-top: 60px; /* 为固定导航栏留出空间 */
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 返回主页按钮 */
+.back-to-home {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: #2c3e50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-top:hover,
+.back-to-home:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .subpage-content {
+        padding-top: 50px;
+    }
+    
+    .back-to-top,
+    .back-to-home {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+} 
