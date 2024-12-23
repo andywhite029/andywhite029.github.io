@@ -1,18 +1,18 @@
 {
     "name": "史睿康的个人网站",
     "short_name": "个人网站",
-    "start_url": "./index0.html",
+    "start_url": "/personal-website/index0.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
     "icons": [
         {
-            "src": "./images/icon-192x192.png",
+            "src": "/personal-website/images/icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "./images/icon-512x512.png",
+            "src": "/personal-website/images/icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
