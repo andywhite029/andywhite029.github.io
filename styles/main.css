@@ -182,9 +182,11 @@ h2 {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     padding: 0 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .portfolio-item {
@@ -329,6 +331,10 @@ h2 {
     .portfolio-overlay .portfolio-tags,
     .portfolio-overlay .portfolio-btn {
         transform: translateY(0);
+    }
+
+    .portfolio-item[data-category="photo"] {
+        grid-column: span 1; /* 在小屏幕上，摄影作品恢复正常大小 */
     }
 }
 
@@ -585,7 +591,7 @@ footer {
     margin-right: 0.5rem;
 }
 
-/* 实习和活动经历样式 */
+/* 实习和活动经���样式 */
 .timeline-role {
     color: #007bff;
     font-size: 0.95rem;
@@ -666,7 +672,7 @@ footer {
     }
 }
 
-/* 轮播图样式优化 */
+/* 轮播图样式化 */
 .experience-carousel {
     margin-top: 1.5rem;
     width: 100%;
@@ -754,4 +760,48 @@ footer {
         width: 95%;
         margin: 20px auto;
     }
+}
+
+/* 模态框基础样式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1100;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.close-modal {
+    position: absolute;
+    right: 0;
+    top: -40px;
+    color: #fff;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modalImage {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+#videoPlayer {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    background: #000;
 } 

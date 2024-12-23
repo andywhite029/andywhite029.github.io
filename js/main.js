@@ -111,48 +111,71 @@ document.addEventListener('DOMContentLoaded', function() {
     // 页面加载完成后初始化轮播图
     initExperienceCarousel();
 
-    // 视频播放器功能
+    // 获取模态框元素
+    const imageModal = document.getElementById('imageModal');
     const videoModal = document.getElementById('videoModal');
+    const modalImage = document.getElementById('modalImage');
     const videoPlayer = document.getElementById('videoPlayer');
-    const closeVideo = document.querySelector('.close-video');
-    const videoButtons = document.querySelectorAll('.portfolio-btn[data-video="true"]');
+    const closeButtons = document.querySelectorAll('.close-modal');
 
-    // 打开视频模态框
-    videoButtons.forEach(button => {
+    // 处理作品点击事件
+    document.querySelectorAll('.portfolio-btn').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            const videoUrl = button.getAttribute('href');
-            videoPlayer.src = videoUrl;
-            videoModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // 防止背景滚动
-            videoPlayer.play();
+            const type = button.dataset.type;
+            const src = button.dataset.src;
+
+            if (type === 'image') {
+                // 显示图片模态框
+                modalImage.src = src;
+                imageModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else if (type === 'video') {
+                // 显示视频模态框
+                videoPlayer.src = src;
+                videoModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                videoPlayer.play();
+            }
         });
     });
 
-    // 关闭视频模态框
-    closeVideo.addEventListener('click', () => {
-        videoModal.style.display = 'none';
-        videoPlayer.pause();
-        videoPlayer.src = '';
-        document.body.style.overflow = 'auto';
-    });
-
-    // 点击模态框外部关闭
-    videoModal.addEventListener('click', (e) => {
-        if (e.target === videoModal) {
+    // 关闭模态框
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            imageModal.style.display = 'none';
             videoModal.style.display = 'none';
             videoPlayer.pause();
             videoPlayer.src = '';
+            modalImage.src = '';
             document.body.style.overflow = 'auto';
-        }
+        });
+    });
+
+    // 点击模态框外部关闭
+    [imageModal, videoModal].forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                if (modal === videoModal) {
+                    videoPlayer.pause();
+                    videoPlayer.src = '';
+                } else {
+                    modalImage.src = '';
+                }
+                document.body.style.overflow = 'auto';
+            }
+        });
     });
 
     // ESC键关闭模态框
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && videoModal.style.display === 'block') {
+        if (e.key === 'Escape') {
+            imageModal.style.display = 'none';
             videoModal.style.display = 'none';
             videoPlayer.pause();
             videoPlayer.src = '';
+            modalImage.src = '';
             document.body.style.overflow = 'auto';
         }
     });
