@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作品集 - 史睿康的个人网站</title>
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/main.css">
@@ -41,10 +42,47 @@
                 <button class="portfolio-tab" data-category="video">视频作品</button>
                 <button class="portfolio-tab" data-category="commercial">商业案例</button>
             </div>
+            
             <div class="portfolio-grid">
+                
+                <!-- ===========================
+                     置顶推荐：最新实习作品 (建议补充)
+                     =========================== -->
+                <!-- 示例：Momenta 文章 -->
+                <!-- 
+                <div class="portfolio-item" data-category="commercial">
+                    <img src="./images/experience/momenta1.jpg" alt="Momenta品牌文案" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Momenta 品牌营销</h3>
+                        <p>知乎/公众号 爆款高赞文章策划</p>
+                        <div class="portfolio-tags">
+                            <span>内容营销</span>
+                            <span>自动驾驶</span>
+                        </div>
+                        <a href="你的文章链接" class="portfolio-btn" target="_blank">阅读文章</a>
+                    </div>
+                </div>
+                -->
+
+                <!-- 示例：极氪活动 -->
+                <!--
+                <div class="portfolio-item" data-category="commercial">
+                    <img src="./images/experience/zeekr1.jpg" alt="极氪线下活动" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>极氪汽车 城市展厅活动</h3>
+                        <p>单日获客5000+ 活动全案执行</p>
+                        <div class="portfolio-tags">
+                            <span>线下活动</span>
+                            <span>用户增长</span>
+                        </div>
+                        <a href="#" class="portfolio-btn" data-type="image" data-src="./images/experience/zeekr1.jpg">查看现场</a>
+                    </div>
+                </div>
+                -->
+
                 <!-- 视频作品 -->
                 <div class="portfolio-item" data-category="video">
-                    <img src="./images/portfolio/s.png" alt="三九演义">
+                    <img src="./images/portfolio/s.png" alt="三九演义" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>《三九演义》</h3>
                         <p>2024年中国大学生广告艺术大赛获奖作品</p>
@@ -58,9 +96,10 @@
                            data-src="./images/video/WeChat_20241219130752.mp4">观看视频</a>
                     </div>
                 </div>
-                <!-- 添加航天试车报道 -->
+
+                <!-- 航天试车报道 -->
                 <div class="portfolio-item" data-category="news">
-                    <img src="./images/experience/tv1.jpg" alt="航天试车报道">
+                    <img src="./images/experience/tv1.jpg" alt="航天试车报道" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>新春走基层 站好车"第一班岗"</h3>
                         <p>陕西广电融媒体集团·起点新闻报道</p>
@@ -70,7 +109,7 @@
                         </div>
                         <a href="https://qidian.sxtvs.com/timing/share/content/10489453" 
                            class="portfolio-btn" 
-                           onclick="window.open('https://qidian.sxtvs.com/timing/share/content/10489453', '_blank')"
+                           target="_blank"
                            rel="noopener noreferrer">
                             阅读报道
                         </a>
@@ -79,7 +118,7 @@
 
                 <!-- 摄影作品 -->
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/c1.jpg" alt="风光摄影">
+                    <img src="./images/photo/c1.jpg" alt="风光摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>西安世博园长安塔</h3>
                         <p>丝绸之路上的自然与人文景观</p>
@@ -94,7 +133,7 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/a1.jpg" alt="人像摄影">
+                    <img src="./images/photo/a1.jpg" alt="人像摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>校园人像纪实</h3>
                         <p>记录精彩瞬间</p>
@@ -108,19 +147,19 @@
                     </div>
                 </div>
                 
-                <!-- 添加新的新闻作品 -->
+                <!-- 秦岭生态保护报道 -->
                 <div class="portfolio-item" data-category="news">
-                    <img src="./images/experience/tv4.jpg" alt="秦岭生态保护报道">
+                    <img src="./images/experience/tv4.jpg" alt="秦岭生态保护报道" loading="lazy">
                     <div class="portfolio-overlay">
-                        <h3>"高质量发展一线行"专访|牢"国之大者" 当好秦岭卫士</h3>
-                        <p>陕西广电融媒体集团·起点新闻报道</p>
+                        <h3>"高质量发展一线行"专访</h3>
+                        <p>牢记"国之大者" 当好秦岭卫士</p>
                         <div class="portfolio-tags">
                             <span>专访报道</span>
                             <span>生态保护</span>
                         </div>
                         <a href="https://qidian.sxtvs.com/timing/share/content/10482517" 
                            class="portfolio-btn" 
-                           onclick="window.open('https://qidian.sxtvs.com/timing/share/content/10482517', '_blank')"
+                           target="_blank"
                            rel="noopener noreferrer">
                             阅读报道
                         </a>
@@ -128,7 +167,7 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/a2.jpg" alt="人像摄影">
+                    <img src="./images/photo/a2.jpg" alt="人像摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>校园人像纪实</h3>
                         <p>记录精彩瞬间</p>
@@ -143,7 +182,7 @@
                 </div>
 
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/a3.jpg" alt="人像摄影">
+                    <img src="./images/photo/a3.jpg" alt="人像摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>校园人像纪实</h3>
                         <p>记录精彩瞬间</p>
@@ -158,7 +197,7 @@
                 </div>
 
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/n2.jpg" alt="风光摄影">
+                    <img src="./images/photo/n2.jpg" alt="风光摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>昆明滇池</h3>
                         <p>王官湿地公园</p>
@@ -172,58 +211,57 @@
                     </div>
                 </div>
 
-                <!-- 修改新闻作品的部分 -->
+                <!-- 西安东站新闻报道 -->
                 <div class="portfolio-item" data-category="news">
-                    <img src="./images/experience/tv3.jpg" alt="西安东站新闻报道">
+                    <img src="./images/experience/tv3.jpg" alt="西安东站新闻报道" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>探访正在"崛起"的西安东站</h3>
                         <p>陕西广电融媒体集团·起点新闻报道</p>
                         <div class="portfolio-tags">
                             <span>新闻报道</span>
                             <span>实地探访</span>
-                            <span>融媒体作品</span>
                         </div>
                         <a href="https://qidian.sxtvs.com/timing/share/content/10482946" 
                            class="portfolio-btn" 
-                           onclick="window.open('https://qidian.sxtvs.com/timing/share/content/10482946', '_blank')"
+                           target="_blank"
                            rel="noopener noreferrer">
                             阅读报道
                         </a>
                     </div>
                 </div>
 
-                <!-- 添加温暖回家路报道 -->
+                <!-- 温暖回家路报道 -->
                 <div class="portfolio-item" data-category="news">
-                    <img src="./images/experience/tv5.jpg" alt="温暖回家路报道">
+                    <img src="./images/experience/tv5.jpg" alt="温暖回家路报道" loading="lazy">
                     <div class="portfolio-overlay">
-                        <h3>温暖回家路|把"年味"藏在行李箱里带回家</h3>
-                        <p>陕西广电融媒体集团·起点新闻报道</p>
+                        <h3>温暖回家路</h3>
+                        <p>把"年味"藏在行李箱里带回家</p>
                         <div class="portfolio-tags">
                             <span>新闻报道</span>
                             <span>春运报道</span>
                         </div>
                         <a href="https://qidian.sxtvs.com/timing/share/content/10486767" 
                            class="portfolio-btn" 
-                           onclick="window.open('https://qidian.sxtvs.com/timing/share/content/10486767', '_blank')"
+                           target="_blank"
                            rel="noopener noreferrer">
                             阅读报道
                         </a>
                     </div>
                 </div>
 
-                <!-- 添加医疗器械AI报道 -->
+                <!-- 医疗器械AI报道 -->
                 <div class="portfolio-item" data-category="news">
-                    <img src="./images/experience/tv6.jpg" alt="医疗器械AI报道">
+                    <img src="./images/experience/tv6.jpg" alt="医疗器械AI报道" loading="lazy">
                     <div class="portfolio-overlay">
-                        <h3>探寻新质生产力丨西安：医疗器械研发 借力"人工智能"</h3>
-                        <p>陕西广电融媒体集团·起点新闻报道</p>
+                        <h3>探寻新质生产力</h3>
+                        <p>西安：医疗器械研发 借力"人工智能"</p>
                         <div class="portfolio-tags">
                             <span>科技报道</span>
                             <span>人工智能</span>
                         </div>
                         <a href="https://qidian.sxtvs.com/timing/share/content/10493211" 
                            class="portfolio-btn" 
-                           onclick="window.open('https://qidian.sxtvs.com/timing/share/content/10493211', '_blank')"
+                           target="_blank"
                            rel="noopener noreferrer">
                             阅读报道
                         </a>
@@ -231,7 +269,7 @@
                 </div>
 
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/c3.jpg" alt="风光摄影">
+                    <img src="./images/photo/c3.jpg" alt="风光摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>重庆</h3>
                         <p>嘉陵江大桥</p>
@@ -246,7 +284,7 @@
                 </div>
 
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/n1.jpg" alt="风光摄影">
+                    <img src="./images/photo/n1.jpg" alt="风光摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>雨中滇池</h3>
                         <p>王官湿地公园</p>
@@ -261,7 +299,7 @@
                 </div>
 
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/n4.jpg" alt="风光摄影">
+                    <img src="./images/photo/n4.jpg" alt="风光摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>乡野纪实1</h3>
                         <p>渭南·潼关</p>
@@ -275,83 +313,4 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/n5.jpg" alt="风光摄影">
-                    <div class="portfolio-overlay">
-                        <h3>乡野纪实2</h3>
-                        <p>渭南·潼关</p>
-                        <div class="portfolio-tags">
-                            <span>风光</span>
-                            <span>纪实</span>
-                        </div>
-                        <a href="#" class="portfolio-btn" 
-                           data-type="image"
-                           data-src="./images/sphoto/sn5.jpg">查看大图</a>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/2.jpg" alt="风光摄影">
-                    <div class="portfolio-overlay">
-                        <h3>经典机械</h3>
-                        <p>福伦达·德味</p>
-                        <div class="portfolio-tags">
-                            <span>胶片</span>
-                            <span>纪实</span>
-                        </div>
-                        <a href="#" class="portfolio-btn" 
-                           data-type="image"
-                           data-src="./images/sphoto/s2.jpg">查看大图</a>
-                    </div>
-                </div>
-
-                <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/s4.jpg" alt="风光摄影">
-                    <div class="portfolio-overlay">
-                        <h3>灞柳风韵</h3>
-                        <p>西安·浐灞</p>
-                        <div class="portfolio-tags">
-                            <span>风光</span>
-                            <span>纪实</span>
-                        </div>
-                        <a href="#" class="portfolio-btn" 
-                           data-type="image"
-                           data-src="./images/sphoto/ss4.jpg">查看大图</a>
-                    </div>
-                </div>
-
-        </section>
-    </main>
-
-    <!-- 返回顶部按钮 -->
-    <a href="#" class="back-to-top" title="返回顶部">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- 返回主页按钮 -->
-    <a href="index.html" class="back-to-home" title="返回主页">
-        <i class="fas fa-home"></i>
-    </a>
-
-    <!-- 图片查看模态框 -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <img id="modalImage" src="" alt="大图">
-        </div>
-    </div>
-
-    <!-- 视频播放模态框 -->
-    <div id="videoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <video id="videoPlayer" controls>
-                <source src="" type="video/mp4">
-                您的浏览器不支持视频播放。
-            </video>
-        </div>
-    </div>
-
-    <script src="js/main.js"></script>
-</body>
-</html> 
+                <div class="portfolio-item" data-category
