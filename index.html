@@ -11,25 +11,6 @@
     <link rel="stylesheet" href="styles/carousel.css">
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar" aria-label="主导航">
-        <div class="nav-brand">
-            <a href="index.html" aria-label="返回主页">
-                <img src="./images/logo.jpg" alt="Logo" class="logo">
-            </a>
-        </div>
-        <button class="nav-toggle" aria-label="切换导航菜单">
-            <span class="hamburger"></span>
-        </button>
-        <div class="nav-menu">
-            <ul>
-                <li><a href="index.html" class="active">首页</a></li>
-                <li><a href="index01.html">关于我</a></li>
-                <li><a href="index02.html">作品集</a></li>
-                <li><a href="#contact">联系方式</a></li>
-            </ul>
-        </div>
-    </nav>
 
     <!-- 照片轮播 (文案更新：体现大厂与AI背景) -->
     <section id="carousel" class="carousel">
@@ -105,6 +86,66 @@
             </div>
         </section>
 
+  <!-- 技能展示 -->
+        <section id="skills" class="section">
+            <h2>专业技能</h2>
+            <div class="skills-grid">
+                <!-- 技能 1 -->
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <i class="fas fa-camera"></i>
+                        <h3>摄影与影视制作</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <ul>
+                            <li>熟练使用索尼、佳能、电影机及无人机航拍</li>
+                            <li>精通 DaVinci Resolve, PR, AE, 剪映进行后期制作</li>
+                            <li>具备导演思维，熟悉上市路演视频及广告策划全流程</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 技能 2 -->
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>品牌公关与运营</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <ul>
+                            <li>熟悉紧急舆情处理流程，撰写专业分析报告</li>
+                            <li>双微一抖、B站、知乎多平台生态构建</li>
+                            <li>具备私域流量池构建及线索转化实战经验</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 技能 3 -->
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <i class="fas fa-robot"></i>
+                        <h3>AI工具与开发</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <ul>
+                            <li>熟练使用 Cursor, Gemini 独立开发网页与APP</li>
+                            <li>利用生成式AI进行图文、音频创作辅助</li>
+                            <li>HTML5, CSS3, JavaScript, GitHub Pages部署</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 实习经历 (保持你最新的版本) -->
         <section id="experience" class="section experience-section">
             <h2>实习经历</h2>
@@ -113,9 +154,9 @@
                     
                     <!-- 经历 1: Momenta -->
                     <div class="timeline-item">
-                        <div class="timeline-date">2025.10 - 至今</div>
                         <div class="timeline-content">
                             <h3>Momenta</h3>
+                            <div class="timeline-date">2025.10 - 至今</div>
                             <p class="timeline-role">Marketing & PR Intern</p>
                             <ul class="timeline-details">
                                 <li><strong>线上运营：</strong>独立负责多平台品牌营销，发布稿件100+，提升行业影响力。</li>
@@ -128,15 +169,16 @@
                                         <img src="./images/experience/momenta1.jpg" alt="Momenta实习" loading="lazy">
                                     </div>
                                 </div>
+                                <div class="exp-carousel-dots"></div>
                             </div>
                         </div>
                     </div>
 
                     <!-- 经历 2: 极氪汽车 -->
                     <div class="timeline-item">
-                        <div class="timeline-date">2025.02 - 2025.07</div>
                         <div class="timeline-content">
                             <h3>极氪汽车 (ZEEKR)</h3>
+                            <div class="timeline-date">2025.02 - 2025.07</div>
                             <p class="timeline-role">市场实习生</p>
                             <ul class="timeline-details">
                                 <li><strong>用户增长：</strong>制定城市端策略，新增注册用户8万+，线索3万+。</li>
@@ -153,129 +195,341 @@
                                 </div>
                                 <button class="exp-btn exp-prev" aria-label="上一张">&#10094;</button>
                                 <button class="exp-btn exp-next" aria-label="下一张">&#10095;</button>
+                                <div class="exp-carousel-dots"></div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 电视台经历省略部分细节以节省首页空间，引导看详情 -->
-                     <div class="timeline-item">
-                        <div class="timeline-date">2024.01 - 2024.04</div>
+                                       <!-- 经历 3: 陕西省电视台 -->
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <h3>陕西省电视台</h3>
+                            <div class="timeline-date">2024.01 - 2024.04</div>
                             <p class="timeline-role">摄影记者</p>
                             <p>独立完成新闻采编、专题报道策划，作品多次被新媒体转载。</p>
+                            
+                            <!-- 新增的照片轮播结构 -->
+                            <div class="experience-carousel">
+                                <div class="exp-carousel-container">
+                                    <!-- 第1张照片 -->
+                                    <div class="exp-slide active">
+                                        <img src="./images/experience/tv1.jpg" alt="陕西电视台工作现场1" loading="lazy">
+                                    </div>
+                                    <!-- 第2张照片 -->
+                                    <div class="exp-slide">
+                                        <img src="./images/experience/tv2.jpg" alt="陕西电视台工作现场2" loading="lazy">
+                                    </div>
+                                </div>
+                                <!-- 左右切换按钮 -->
+                                <button class="exp-btn exp-prev" aria-label="上一张">&#10094;</button>
+                                <button class="exp-btn exp-next" aria-label="下一张">&#10095;</button>
+                                <!-- 底部小圆点 -->
+                                <div class="exp-carousel-dots"></div>
+                            </div>
+
                         </div>
                     </div>
-
-                </div>
             </div>
         </section>
 
         <!-- 精选作品 (只展示Top 6，优化加载速度) -->
         <section id="portfolio" class="section">
             <h2>精选作品</h2>
+            <!-- 作品集筛选标签 -->
+            <div class="portfolio-tabs">
+                <button class="portfolio-tab active" data-category="all">全部</button>
+                <button class="portfolio-tab" data-category="photo">摄影作品</button>
+                <button class="portfolio-tab" data-category="news">新闻报道</button>
+                <button class="portfolio-tab" data-category="video">视频作品</button>
+                <button class="portfolio-tab" data-category="commercial">商业案例</button>
+            </div>
+            
             <div class="portfolio-grid">
-                <!-- 1. 获奖视频 -->
+                
+                <!-- ===========================
+                     置顶推荐：最新实习作品 (建议补充)
+                     =========================== -->
+                <!-- 示例：Momenta 文章 -->
+                <!-- 
+                <div class="portfolio-item" data-category="commercial">
+                    <img src="./images/experience/momenta1.jpg" alt="Momenta品牌文案" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Momenta 品牌营销</h3>
+                        <p>知乎/公众号爆款高赞文章策划</p>
+                        <div class="portfolio-tags">
+                            <span>内容营销</span>
+                            <span>自动驾驶</span>
+                        </div>
+                        <a href="你的文章链接" class="portfolio-btn" target="_blank" rel="noopener noreferrer">阅读文章</a>
+                    </div>
+                </div>
+                -->
+
+                <!-- 示例：极氪活动 -->
+                <!--
+                <div class="portfolio-item" data-category="commercial">
+                    <img src="./images/experience/zeekr1.jpg" alt="极氪线下活动" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>极氪汽车 城市展厅活动</h3>
+                        <p>单日获客5000+ 活动全案执行</p>
+                        <div class="portfolio-tags">
+                            <span>线下活动</span>
+                            <span>用户增长</span>
+                        </div>
+                        <a href="#" class="portfolio-btn" data-type="image" data-src="./images/experience/zeekr1.jpg">查看现场</a>
+                    </div>
+                </div>
+                -->
+
+                <!-- 视频作品 -->
                 <div class="portfolio-item" data-category="video">
                     <img src="./images/portfolio/s.png" alt="三九演义" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>《三九演义》</h3>
-                        <p>大广赛国家级优秀奖</p>
+                        <p>2024年中国大学生广告艺术大赛获奖作品</p>
                         <div class="portfolio-tags">
                             <span>获奖作品</span>
+                            <span>国家级优秀奖</span>
                             <span>短视频</span>
                         </div>
-                        <a href="#" class="portfolio-btn" data-type="video" data-src="./images/video/WeChat_20241219130752.mp4">观看视频</a>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="video"
+                           data-src="./images/video/WeChat_20241219130752.mp4">观看视频</a>
                     </div>
                 </div>
 
-                <!-- 2. 航天报道 -->
+                <!-- 航天试车报道 -->
                 <div class="portfolio-item" data-category="news">
                     <img src="./images/experience/tv1.jpg" alt="航天试车报道" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>新春走基层 站好车"第一班岗"</h3>
+                        <p>陕西广电融媒体集团·起点新闻报社</p>
                         <div class="portfolio-tags">
+                            <span>新春走基层</span>
                             <span>航天科技</span>
-                            <span>新闻报道</span>
                         </div>
-                        <a href="https://qidian.sxtvs.com/timing/share/content/10489453" class="portfolio-btn" target="_blank">阅读报道</a>
+                        <a href="https://qidian.sxtvs.com/timing/share/content/10489453" 
+                           class="portfolio-btn" 
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            阅读报道
+                        </a>
                     </div>
                 </div>
 
-                <!-- 3. 摄影代表作 1 -->
+                <!-- 摄影作品 -->
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/c1.jpg" alt="长安塔" loading="lazy">
+                    <img src="./images/photo/c1.jpg" alt="风光摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>西安世博园长安塔</h3>
+                        <p>丝绸之路上的自然与人文景观</p>
                         <div class="portfolio-tags">
                             <span>风光</span>
-                            <span>建筑</span>
+                            <span>人文</span>
                         </div>
-                        <a href="#" class="portfolio-btn" data-type="image" data-src="./images/sphoto/sc1.jpg">查看大图</a>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="image"
+                           data-src="./images/sphoto/sc1.jpg">查看大图</a>
                     </div>
                 </div>
                 
-                <!-- 4. 摄影代表作 2 -->
                 <div class="portfolio-item" data-category="photo">
                     <img src="./images/photo/a1.jpg" alt="人像摄影" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>校园人像纪实</h3>
+                        <p>记录精彩瞬间</p>
                         <div class="portfolio-tags">
                             <span>人像</span>
-                            <span>光影</span>
+                            <span>棚拍</span>
                         </div>
-                        <a href="#" class="portfolio-btn" data-type="image" data-src="./images/sphoto/sa1.jpg">查看大图</a>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="image"
+                           data-src="./images/sphoto/sa1.jpg">查看大图</a>
+                    </div>
+                </div>
+                
+                <!-- 秦岭生态保护报道 -->
+                <div class="portfolio-item" data-category="news">
+                    <img src="./images/experience/tv4.jpg" alt="秦岭生态保护报道" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>"高质量发展一线行"专访</h3>
+                        <p>牢记"国之大者" 当好秦岭卫士</p>
+                        <div class="portfolio-tags">
+                            <span>专访报道</span>
+                            <span>生态保护</span>
+                        </div>
+                        <a href="https://qidian.sxtvs.com/timing/share/content/10482517" 
+                           class="portfolio-btn" 
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            阅读报道
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="photo">
+                    <img src="./images/photo/a2.jpg" alt="人像摄影" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>校园人像纪实</h3>
+                        <p>记录精彩瞬间</p>
+                        <div class="portfolio-tags">
+                            <span>人像</span>
+                            <span>棚拍</span>
+                        </div>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="image"
+                           data-src="./images/sphoto/sa2.jpg">查看大图</a>
                     </div>
                 </div>
 
-                <!-- 5. 医疗AI报道 -->
-                <div class="portfolio-item" data-category="news">
-                    <img src="./images/experience/tv6.jpg" alt="医疗AI" loading="lazy">
+                <div class="portfolio-item" data-category="photo">
+                    <img src="./images/photo/a3.jpg" alt="人像摄影" loading="lazy">
                     <div class="portfolio-overlay">
-                        <h3>西安：医疗器械研发 借力"人工智能"</h3>
+                        <h3>校园人像纪实</h3>
+                        <p>记录精彩瞬间</p>
+                        <div class="portfolio-tags">
+                            <span>人像</span>
+                            <span>棚拍</span>
+                        </div>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="image"
+                           data-src="./images/sphoto/sa3.jpg">查看大图</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="photo">
+                    <img src="./images/photo/n2.jpg" alt="风光摄影" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>昆明滇池</h3>
+                        <p>王官湿地公园</p>
+                        <div class="portfolio-tags">
+                            <span>风光</span>
+                            <span>旅行</span>
+                        </div>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="image"
+                           data-src="./images/sphoto/sn2.jpg">查看大图</a>
+                    </div>
+                </div>
+
+                <!-- 西安东站新闻报道 -->
+                <div class="portfolio-item" data-category="news">
+                    <img src="./images/experience/tv3.jpg" alt="西安东站新闻报道" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>探访正在"崛起"的西安东站</h3>
+                        <p>陕西广电融媒体集团·起点新闻报社</p>
+                        <div class="portfolio-tags">
+                            <span>新闻报道</span>
+                            <span>实地探访</span>
+                        </div>
+                        <a href="https://qidian.sxtvs.com/timing/share/content/10482946" 
+                           class="portfolio-btn" 
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            阅读报道
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 温暖回家路报道 -->
+                <div class="portfolio-item" data-category="news">
+                    <img src="./images/experience/tv5.jpg" alt="温暖回家路报道" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>温暖回家路</h3>
+                        <p>年味藏在行李箱里带回家</p>
+                        <div class="portfolio-tags">
+                            <span>新闻报道</span>
+                            <span>春运报道</span>
+                        </div>
+                        <a href="https://qidian.sxtvs.com/timing/share/content/10486767" 
+                           class="portfolio-btn" 
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            阅读报道
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 医疗器械AI报道 -->
+                <div class="portfolio-item" data-category="news">
+                    <img src="./images/experience/tv6.jpg" alt="医疗器械AI报道" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>探寻新质生产线</h3>
+                        <p>西安：医疗器械研发借力人工智能</p>
                         <div class="portfolio-tags">
                             <span>科技报道</span>
-                            <span>AI</span>
+                            <span>人工智能</span>
                         </div>
-                        <a href="https://qidian.sxtvs.com/timing/share/content/10493211" class="portfolio-btn" target="_blank">阅读报道</a>
+                        <a href="https://qidian.sxtvs.com/timing/share/content/10493211" 
+                           class="portfolio-btn" 
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            阅读报道
+                        </a>
                     </div>
                 </div>
 
-                <!-- 6. 摄影代表作 3 -->
                 <div class="portfolio-item" data-category="photo">
-                    <img src="./images/photo/2.jpg" alt="经典机械" loading="lazy">
+                    <img src="./images/photo/c3.jpg" alt="风光摄影" loading="lazy">
                     <div class="portfolio-overlay">
-                        <h3>经典机械</h3>
+                        <h3>重庆</h3>
+                        <p>嘉陵江大桥</p>
                         <div class="portfolio-tags">
-                            <span>静物</span>
-                            <span>胶片感</span>
+                            <span>风光</span>
+                            <span>旅行</span>
                         </div>
-                        <a href="#" class="portfolio-btn" data-type="image" data-src="./images/sphoto/s2.jpg">查看大图</a>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="image"
+                           data-src="./images/sphoto/sc3.jpg">查看大图</a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 查看更多按钮 -->
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="index02.html" class="btn" style="background:transparent; border: 2px solid #007bff; color:#007bff; padding:10px 30px; border-radius:25px; text-decoration:none; font-weight:bold; transition:all 0.3s;">
-                    查看完整作品集 (Portfolio) &rarr;
-                </a>
-            </div>
+
+                <div class="portfolio-item" data-category="photo">
+                    <img src="./images/photo/n1.jpg" alt="风光摄影" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>雨中滇池</h3>
+                        <p>王官湿地公园</p>
+                        <div class="portfolio-tags">
+                            <span>风光</span>
+                            <span>旅行</span>
+                        </div>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="image"
+                           data-src="./images/sphoto/sn1.jpg">查看大图</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="photo">
+                    <img src="./images/photo/n4.jpg" alt="风光摄影" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>乡野纪实1</h3>
+                        <p>渭南·潼关</p>
+                        <div class="portfolio-tags">
+                            <span>风光</span>
+                            <span>纪实</span>
+                        </div>
+                        <a href="#" class="portfolio-btn" 
+                           data-type="image"
+                           data-src="./images/sphoto/sn4.jpg">查看大图</a>
+                    </div>
+                </div>
+            </div> 
+
         </section>
 
         <!-- 社交媒体链接 -->
         <section id="social" class="section">
             <h2>社交媒体</h2>
             <div class="social-icons">
-                <a href="https://www.douyin.com/user/MS4wLjABAAAAMeimpMesxnLgY7q_lJq1ObmWVbKB2d7Nf2XlkCvduPw" class="social-icon" target="_blank">
+                <a href="https://www.douyin.com/user/MS4wLjABAAAAMeimpMesxnLgY7q_lJq1ObmWVbKB2d7Nf2XlkCvduPw" class="social-icon" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-tiktok"></i>
                     <span class="social-name">抖音</span>
                 </a>
-                <a href="https://www.xiaohongshu.com/user/profile/639741f60000000026007907" class="social-icon" target="_blank">
+                <a href="https://www.xiaohongshu.com/user/profile/639741f60000000026007907" class="social-icon" target="_blank" rel="noopener noreferrer">
                     <img src="./images/redbook.png" alt="小红书" class="custom-icon">
                     <span class="social-name">小红书</span>
                 </a>
-                <a href="https://b23.tv/KzOZPyt" class="social-icon" target="_blank">
+                <a href="https://b23.tv/KzOZPyt" class="social-icon" target="_blank" rel="noopener noreferrer">
                     <img src="./images/bilibili.jpg" alt="哔哩哔哩" class="custom-icon">
                     <span class="social-name">哔哩哔哩</span>
                 </a>
@@ -290,17 +544,17 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <h3>邮箱</h3>
-                        <p><a href="mailto:2367929358@qq.com">2367929358@qq.com</a></p>
+                        <p><a href="mailto:2367929358@qq.com">*********@****.com</a></p>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <h3>电话</h3>
-                        <p><a href="tel:+8617792087316">177-9208-7316</a></p>
+                        <p><a href="tel:+8617792087316">***-****-****</a></p>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-globe"></i>
                         <h3>个人网站</h3>
-                        <p><a href="https://andywhite029.github.io" target="_blank">andywhite029.github.io</a></p>
+                        <p><a href="https://andywhite029.github.io" target="_blank" rel="noopener noreferrer">andywhite029.github.io</a></p>
                     </div>
                 </div>
             </div>
@@ -320,7 +574,6 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/carousel.js"></script>
 
     <!-- 模态框 -->
     <div id="imageModal" class="modal">
@@ -332,7 +585,8 @@
     <div id="videoModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <video id="videoPlayer" controls><source src="" type="video/mp4"></video>
+            <!-- 优化：直接使用 video 标签，去掉 source 标签，方便 JS 操作 -->
+            <video id="videoPlayer" controls style="width: 100%; max-height: 80vh;"></video>
         </div>
     </div>
 </body>
