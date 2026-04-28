@@ -5,16 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node scripts/compress-images.js && vite build",
+    "preview": "vite preview",
+    "compress": "node scripts/compress-images.js"
   },
   "dependencies": {
     "framer-motion": "^11.5.4",
     "lucide-react": "^0.441.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.14.2",
-    "sharp": "^0.34.5"
+    "react-router-dom": "^7.14.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.4",
@@ -22,7 +22,9 @@
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.45",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.10",
-    "vite": "^5.4.3"
+    "vite": "^5.4.3",
+    "vite-plugin-imagemin": "^0.6.1"
   }
 }
