@@ -427,11 +427,11 @@ export default function Home() {
                           <span className="text-xs text-accent">阅读原文 →</span>
                         )}
                       </div>
-                      <h3 className="text-2xl font-semibold text-text-primary mb-3">
+                      <h3 className="text-xl md:text-2xl font-semibold text-text-primary mb-3">
                         {post.title}
                       </h3>
                       <p className="text-text-secondary mb-4 line-clamp-3">{post.excerpt}</p>
-                      <div className="flex gap-2">
+                      <div className="flex flex-wrap gap-2">
                         {post.tags.map((tag) => (
                           <span
                             key={tag}
@@ -448,7 +448,7 @@ export default function Home() {
               ))}
 
               {hasMore && (
-                <div className="col-span-2 flex justify-center pt-4">
+                <div className="col-span-1 md:col-span-2 flex justify-center pt-4">
                   <button
                     onClick={() => setShowAll(!showAll)}
                     className="px-6 py-3 bg-bg-secondary hover:bg-border text-text-primary rounded-full transition-colors"
