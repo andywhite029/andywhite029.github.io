@@ -63,7 +63,7 @@ const projects = [
     title: '轻舟智航2026北京车展《Quest with AI，Craft the future》发布会',
     desc: '北京车展首日：轻舟智航物理AI模型亮相，发布超500TOPS智驾对标上千TOPS体验',
     tags: ['品牌传播', '会展活动', '智能驾驶'],
-    image: 'public/photos/qcraft-autoshow.jpg',
+    image: '/photos/qcraft-autoshow.jpg',
     link: 'https://mp.weixin.qq.com/s/8JVTkqS7IDftY-OBNxotPA',
   },
 ]
