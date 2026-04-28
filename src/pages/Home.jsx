@@ -245,8 +245,8 @@ export default function Home() {
               </h2>
               <p className="text-text-secondary text-lg leading-relaxed mb-8">
                 在品牌传播与舆情公关方面有丰富实战经验，有策划与执行线下会展商业活动经历，能够高效协同多方资源推动项目落地。
-                擅长摄影摄像，熟悉影视制作流程，有多平台媒体运营、用户增长策略、紧急舆情公关经验。
-                熟悉各种 AI 工具，使用 Cursor、Gemini 等工具独立制作网页、安卓 APP（代码见作品集），以及各类图文音频生成式 AI。
+                 <br />擅长摄影摄像，熟悉影视制作流程，有多平台媒体运营、用户增长策略、紧急舆情公关经验。
+                 <br />熟悉各种 AI 工具，使用 Cursor、Gemini 等工具独立制作网页、安卓 APP（代码见作品集），以及各类图文音频生成式 AI。
               </p>
 
               <h3 className="font-serif text-xl font-bold text-text-primary mb-6">
