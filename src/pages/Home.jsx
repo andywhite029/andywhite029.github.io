@@ -384,7 +384,7 @@ export default function Home() {
                 博客
               </h2>
               <p className="text-text-secondary text-lg mb-8">
-                关于技术、设计与生活的思考。持续更新中。
+                关于技术、设计与生活的思考。
               </p>
 
               <div className="flex flex-wrap gap-3">
