@@ -18,7 +18,7 @@ export const photos = [
   'IMG_20241205_152207.webp',
   'IMG_20260307_133845.webp',
   'IMG_20260313_220102.webp',
-  'IMG_20260416_201806.png',
+  'IMG_20260416_201806.webp',
   'mmexport1679234225810.webp',
   'mmexport1680182212665.webp',
   'mmexport1680790933092.webp',

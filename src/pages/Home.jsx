@@ -93,7 +93,7 @@ const blogPosts = [
     excerpt: '临近新春，记者来到西安市纺织城客运站，记录下在外打拼的游子们回家过年的感人瞬间。近12年未见到出嫁女儿的刘女士专程带了四大箱苹果给女儿；父母去世后好几年没回老家的张先生带上四川朋友手工做的腊肉和丑橘准备与亲友团聚；餐厅打工的刘女士收到老板赠送的年货，表示要回去陪妈妈吃团圆饭。',
     date: '2024-02-08',
     readTime: 6,
-   tags: ['新闻'],
+    tags: ['新闻'],
     link: 'https://qidian.sxtvs.com/timing/share/content/10489453',
   },
   {
@@ -203,7 +203,7 @@ export default function Home() {
                 transition={{ delay: 0.3 }}
                 className="text-text-secondary font-medium tracking-widest uppercase text-sm mb-6"
               >
-                wellcome to my world
+                welcome to my world
               </motion.p>
 
               <motion.h1
@@ -331,7 +331,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <a href={project.link || '#'} target="_blank" rel="noopener noreferrer">
+                    <a href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="group">
                     <GlassCard className="overflow-hidden hover:shadow-xl hover:shadow-accent/5 transition-all duration-300 cursor-pointer">
                       <div className="aspect-video bg-gradient-to-br from-border to-bg-secondary flex items-center justify-center overflow-hidden">
                         {project.image ? (
