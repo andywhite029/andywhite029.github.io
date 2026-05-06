@@ -196,11 +196,15 @@ export default function PhotoWall() {
         const colIndex = parseInt(child.dataset.colIndex) || 0
 
         const singleLoopHeight = loopHeights[colIndex] || 1
-        const loopScroll = (scrollY + autoScroll) % singleLoopHeight
-        const parallaxOffset = loopScroll * (parallaxFactor - 1) * 0.5
+        const totalOffset = (scrollY + autoScroll) % singleLoopHeight
 
-        // 组合偏移
-        const y = -loopScroll - parallaxOffset
+        // 计算最终位置 = 初始位置 + 滚动偏移 + 视差偏移
+        let y = baseYPos + totalOffset + totalOffset * (parallaxFactor - 1) * 0.5
+
+        // 如果移出容器范围，wrap 回顶部继续循环
+        if (y > window.innerHeight) {
+          y = y - singleLoopHeight
+        }
 
         child.style.transform = `translateY(${y}px)`
       }

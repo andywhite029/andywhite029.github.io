@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Clock, Tag } from 'lucide-react'
 import PhotoWall from '../components/PhotoWall'
+import NovelSection from '../components/NovelSection'
 import Footer from '../components/Footer'
 
 const skills = [
@@ -161,12 +162,12 @@ const blogPosts = [
   },
 ]
 
-const allTags = ['全部', ...new Set(blogPosts.flatMap((p) => p.tags))]
+const allTags = ['全部', '论文', '新闻', '小说', ...new Set(blogPosts.flatMap((p) => p.tags))]
 
 function GlassCard({ children, className = '' }) {
   return (
     <div
-      className={`bg-bg-primary/70 backdrop-blur-md rounded-3xl border border-border/50 shadow-lg ${className}`}
+      className={`bg-bg-primary/70 backdrop-blur-md rounded-3xl shadow-lg gradient-border ${className}`}
     >
       {children}
     </div>
@@ -176,6 +177,17 @@ function GlassCard({ children, className = '' }) {
 export default function Home() {
   const [selectedTag, setSelectedTag] = useState('全部')
   const [showAll, setShowAll] = useState(false)
+  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 })
+
+  // 鼠标跟随光晕效果
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   const filteredPosts =
     selectedTag === '全部'
@@ -187,6 +199,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      {/* 鼠标跟随光晕 */}
+      <div
+        className="mouse-glow hidden md:block"
+        style={{
+          left: mousePos.x,
+          top: mousePos.y,
+        }}
+      />
+
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
         <PhotoWall />
         <div className="container mx-auto px-6 md:px-12 lg:px-24 text-center relative z-10">
@@ -196,7 +217,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2 mx-auto"
           >
-            <GlassCard className="p-8 md:p-12 lg:p-16">
+            <GlassCard className="p-8 md:p-12 lg:p-16 relative overflow-hidden">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -207,20 +228,42 @@ export default function Home() {
               </motion.p>
 
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.1 }}
                 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-tight mb-8"
               >
-                在影像与文字之间
+                {['在', '影', '像', '与', '文', '字', '之', '间'].map((char, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    transition={{ delay: 0.5 + i * 0.06, duration: 0.5 }}
+                    className="inline-block"
+                  >
+                    {char}
+                  </motion.span>
+                ))}
                 <br />
-                <span className="text-accent">寻找意义</span>
+                <span className="text-accent">
+                  {['寻', '找', '意', '义'].map((char, i) => (
+                    <motion.span
+                      key={i + 8}
+                      initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      transition={{ delay: 1 + i * 0.08, duration: 0.5 }}
+                      className="inline-block"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
+                transition={{ delay: 1.5 }}
                 className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
               >
                 我是Andy，一名热爱技术的创作者。这里记录着我的思考与生活。<br />
@@ -461,6 +504,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <NovelSection />
 
       <Footer />
     </div>
