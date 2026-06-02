@@ -20,7 +20,7 @@ const allPhotos = shuffleArray(photos).map((name) => ({
   name,
 }))
 
-export const CONFIG = {
+const config = {
   gap: 6,
   minColumnWidth: 180,
 }
@@ -90,7 +90,7 @@ export default function PhotoWall() {
     let ticking = false
     const updateColumns = () => {
       const width = window.innerWidth
-      let cols = Math.floor(width / CONFIG.minColumnWidth)
+      let cols = Math.floor(width / config.minColumnWidth)
       cols = Math.max(2, Math.min(cols, 10))
       setColumns(cols)
     }
@@ -174,7 +174,7 @@ export default function PhotoWall() {
 
       for (let i = 0; i < elements.length; i++) {
         const child = elements[i]
-        const baseYPos = parseFloat(child.dataset.baseY) || 0
+        const baseYPos = parseFloat(child.dataset.basey) || 0
         const parallaxFactor = parseFloat(child.dataset.parallax) || 1
         const colIndex = parseInt(child.dataset.colIndex) || 0
 
@@ -210,11 +210,11 @@ export default function PhotoWall() {
   const photoLayout = useMemo(() => {
     if (!layoutReady || Object.keys(loadedImages).length === 0) return []
 
-    const colWidth = (window.innerWidth - CONFIG.gap * (columns + 1)) / columns
+    const colWidth = (window.innerWidth - config.gap * (columns + 1)) / columns
     const cols = Array.from({ length: columns }, () => ({ photos: [], height: 0 }))
 
     // 确保一套照片的高度 >= 容器高度，这样双缓冲后才能无缝覆盖
-    const singlePhotoHeight = colWidth / 2 + CONFIG.gap
+    const singlePhotoHeight = colWidth / 2 + config.gap
     const minLoops = Math.ceil(containerHeight / singlePhotoHeight)
     const totalLoops = Math.max(minLoops, 30)
 
@@ -241,7 +241,7 @@ export default function PhotoWall() {
             parallax,
             colIndex: col,
           })
-          cols[col].height += photoHeight + CONFIG.gap
+          cols[col].height += photoHeight + config.gap
         }
       }
     }
@@ -253,7 +253,7 @@ export default function PhotoWall() {
   }, [loadedImages, columns, layoutReady, containerHeight])
 
   const columnWidth = useMemo(() => {
-    return (window.innerWidth - CONFIG.gap * (columns + 1)) / columns
+    return (window.innerWidth - config.gap * (columns + 1)) / columns
   }, [columns])
 
   return (
@@ -265,21 +265,21 @@ export default function PhotoWall() {
         pointerEvents: 'none',
       }}
     >
-      <div className="flex justify-center h-full" style={{ padding: CONFIG.gap }}>
+      <div className="flex justify-center h-full" style={{ padding: config.gap }}>
         {photoLayout.map((col, colIndex) => (
           <div
             key={colIndex}
             className="flex flex-col"
             style={{
               width: columnWidth,
-              gap: CONFIG.gap,
-              marginLeft: colIndex > 0 ? CONFIG.gap : 0,
+              gap: config.gap,
+              marginLeft: colIndex > 0 ? config.gap : 0,
             }}
           >
             {col.photos.map((photo) => (
               <div
                 key={photo.key}
-                data-baseY={photo.baseY}
+                data-basey={photo.baseY}
                 data-parallax={photo.parallax}
                 data-col-index={photo.colIndex}
                 className="photo-item relative shrink-0 overflow-hidden rounded-xl"

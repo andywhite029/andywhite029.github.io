@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Clock, Tag } from 'lucide-react'
 import PhotoWall from '../components/PhotoWall'
-import NovelSection from '../components/NovelSection'
 import Footer from '../components/Footer'
 
 const skills = [
@@ -77,7 +76,7 @@ const blogPosts = [
     date: '2026-04-27',
     readTime: 15,
     tags: ['论文'],
-    link: '#',
+    link: null,
   },
   {
     id: 2,
@@ -162,7 +161,7 @@ const blogPosts = [
   },
 ]
 
-const allTags = ['全部', '论文', '新闻', '小说', ...new Set(blogPosts.flatMap((p) => p.tags))]
+const allTags = ['全部', ...new Set(blogPosts.flatMap((p) => p.tags))]
 
 function GlassCard({ children, className = '' }) {
   return (
@@ -434,7 +433,7 @@ export default function Home() {
                 {allTags.map((tag) => (
                   <button
                     key={tag}
-                    onClick={() => setSelectedTag(tag)}
+                    onClick={() => { setSelectedTag(tag); setShowAll(false) }}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       selectedTag === tag
                         ? 'bg-accent text-white'
@@ -456,8 +455,38 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
                 >
-                  <a href={post.link} target="_blank" rel="noopener noreferrer">
-                    <GlassCard className="p-6 hover:shadow-xl transition-shadow cursor-pointer h-full">
+                  {post.link ? (
+                    <a href={post.link} target="_blank" rel="noopener noreferrer">
+                      <GlassCard className="p-6 hover:shadow-xl transition-shadow cursor-pointer h-full">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-4 text-sm text-text-secondary">
+                            <span>{post.date}</span>
+                            <span className="flex items-center gap-1">
+                              <Clock size={14} />
+                              {post.readTime} 分钟
+                            </span>
+                          </div>
+                          <span className="text-xs text-accent">阅读原文 →</span>
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-semibold text-text-primary mb-3">
+                          {post.title}
+                        </h3>
+                        <p className="text-text-secondary mb-4 line-clamp-3">{post.excerpt}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {post.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="flex items-center gap-1 px-2 py-1 text-xs text-text-secondary"
+                            >
+                              <Tag size={12} />
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </GlassCard>
+                    </a>
+                  ) : (
+                    <GlassCard className="p-6 h-full">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-4 text-sm text-text-secondary">
                           <span>{post.date}</span>
@@ -466,9 +495,6 @@ export default function Home() {
                             {post.readTime} 分钟
                           </span>
                         </div>
-                        {post.link !== '#' && (
-                          <span className="text-xs text-accent">阅读原文 →</span>
-                        )}
                       </div>
                       <h3 className="text-xl md:text-2xl font-semibold text-text-primary mb-3">
                         {post.title}
@@ -486,7 +512,7 @@ export default function Home() {
                         ))}
                       </div>
                     </GlassCard>
-                  </a>
+                  )}
                 </motion.article>
               ))}
 
@@ -504,8 +530,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      <NovelSection />
 
       <Footer />
     </div>
