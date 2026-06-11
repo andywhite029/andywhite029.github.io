@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useMemo, useCallback } from 'react'
 import { photos } from '../photos'
 
 // ============================================
-// 📸 照片管理 - 编辑 src/photos.js 添加/删除/排序照片
+// 📸 照片管理 - 运行 `npm run compress` 重新生成 photos.js
 // ============================================
 
 // Fisher-Yates 洗牌算法
@@ -15,9 +15,10 @@ const shuffleArray = (arr) => {
   return shuffled
 }
 
-const allPhotos = shuffleArray(photos).map((name) => ({
-  url: `/photos/${name}`,
-  name,
+const allPhotos = shuffleArray(photos).map((p) => ({
+  url: `/photos/${p.name}`,
+  name: p.name,
+  aspectRatio: p.aspectRatio,
 }))
 
 const config = {
@@ -31,50 +32,8 @@ export default function PhotoWall() {
   const rafRef = useRef(null)
   const photoElementsRef = useRef([])
   const [columns, setColumns] = useState(5)
-  const [loadedImages, setLoadedImages] = useState({})
-  const [layoutReady, setLayoutReady] = useState(false)
   const columnLoopHeightsRef = useRef([])
   const prefersReducedMotion = useRef(false)
-
-  // 预加载图片
-  useEffect(() => {
-    let cancelled = false
-
-    const loadImages = async () => {
-      const loaded = {}
-
-      // 分批加载，避免同时发起过多请求
-      const batchSize = 10
-      for (let i = 0; i < allPhotos.length; i += batchSize) {
-        if (cancelled) return
-        const batch = allPhotos.slice(i, i + batchSize)
-        await Promise.all(
-          batch.map(
-            (photo) =>
-              new Promise((resolve) => {
-                const img = new Image()
-                img.onload = () => {
-                  loaded[photo.url] = {
-                    aspectRatio: img.width / img.height,
-                  }
-                  resolve()
-                }
-                img.onerror = () => resolve()
-                img.src = photo.url
-              })
-          )
-        )
-      }
-
-      if (!cancelled) {
-        setLoadedImages(loaded)
-        setLayoutReady(true)
-      }
-    }
-
-    loadImages()
-    return () => { cancelled = true }
-  }, [])
 
   // 检测 prefers-reduced-motion
   useEffect(() => {
@@ -129,11 +88,8 @@ export default function PhotoWall() {
 
   // 容器高度
   const containerHeight = useMemo(() => {
-    if (!layoutReady || Object.keys(loadedImages).length === 0) {
-      return window.innerHeight * 3
-    }
     return window.innerHeight * 4
-  }, [loadedImages, layoutReady])
+  }, [])
 
   // 缓存 DOM 引用以避免每帧 querySelectorAll
   const cachePhotoElements = useCallback(() => {
@@ -145,7 +101,6 @@ export default function PhotoWall() {
 
   // 动画循环
   useEffect(() => {
-    if (!layoutReady) return
     if (prefersReducedMotion.current) return
 
     // 延迟缓存 DOM（等渲染完成后）
@@ -204,12 +159,10 @@ export default function PhotoWall() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [layoutReady, cachePhotoElements])
+  }, [cachePhotoElements])
 
   // 渲染布局 - 双缓冲：每列渲染两套相同照片，实现首尾无缝循环
   const photoLayout = useMemo(() => {
-    if (!layoutReady || Object.keys(loadedImages).length === 0) return []
-
     const colWidth = (window.innerWidth - config.gap * (columns + 1)) / columns
     const cols = Array.from({ length: columns }, () => ({ photos: [], height: 0 }))
 
@@ -224,10 +177,8 @@ export default function PhotoWall() {
         for (let col = 0; col < columns; col++) {
           const photoIndex = (loop * columns + col) % allPhotos.length
           const photo = allPhotos[photoIndex]
-          const imgData = loadedImages[photo.url]
-          if (!imgData) continue
 
-          const photoHeight = colWidth / imgData.aspectRatio
+          const photoHeight = colWidth / photo.aspectRatio
           // 视差系数：让不同列的照片有不同速度 (0.85 - 1.15)
           const parallax = 0.85 + Math.abs((col - columns / 2) / columns) * 0.3
           const baseY = cols[col].height
@@ -250,7 +201,7 @@ export default function PhotoWall() {
     columnLoopHeightsRef.current = cols.map((c) => c.height / 2)
 
     return cols
-  }, [loadedImages, columns, layoutReady, containerHeight])
+  }, [columns, containerHeight])
 
   const columnWidth = useMemo(() => {
     return (window.innerWidth - config.gap * (columns + 1)) / columns

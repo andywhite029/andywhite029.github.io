@@ -87,7 +87,7 @@ a {
 
 .gradient-border {
   position: relative;
-  background: var(--bg-primary);
+  background: transparent;
   border-radius: 1.5rem;
 }
 

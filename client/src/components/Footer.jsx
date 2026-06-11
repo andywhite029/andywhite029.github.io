@@ -1,9 +1,10 @@
 import { Github, Twitter, Mail, Linkedin } from 'lucide-react'
 
+// TODO: 替换为真实社交账号链接
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: Github, href: 'https://github.com/andywhite029', label: 'GitHub' },
+  { icon: Twitter, href: '#', label: 'Twitter' },
+  { icon: Linkedin, href: '#', label: 'LinkedIn' },
   { icon: Mail, href: 'mailto:hello@example.com', label: 'Email' },
 ]
 
