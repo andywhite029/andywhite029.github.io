@@ -13,6 +13,7 @@ export default [
       sourceType: 'module',
       globals: {
         ...globals.browser,
+        ...globals.node,
         ...globals.es2021,
       },
       parserOptions: {
@@ -31,7 +32,9 @@ export default [
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      'react/jsx-uses-vars': 'error',
+      'react/jsx-uses-react': 'off',
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }],
     },
     settings: {
       react: {

@@ -5,6 +5,8 @@ import { photos } from '../photos'
 // 📸 照片管理 - 运行 `npm run compress` 重新生成 photos.js
 // ============================================
 
+const isBrowser = typeof window !== 'undefined'
+
 // Fisher-Yates 洗牌算法
 const shuffleArray = (arr) => {
   const shuffled = [...arr]
@@ -30,28 +32,37 @@ export default function PhotoWall() {
   const containerRef = useRef(null)
   const scrollRef = useRef(0)
   const rafRef = useRef(null)
-  const photoElementsRef = useRef([])
+  const photoDataRef = useRef([])
   const [columns, setColumns] = useState(5)
+  const [dimensions, setDimensions] = useState({
+    width: isBrowser ? window.innerWidth : 1920,
+    height: isBrowser ? window.innerHeight : 1080,
+  })
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const columnLoopHeightsRef = useRef([])
-  const prefersReducedMotion = useRef(false)
 
-  // 检测 prefers-reduced-motion
+  // 检测 prefers-reduced-motion（用 state 以便变化时停止/启动动画）
   useEffect(() => {
+    if (!isBrowser) return
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    prefersReducedMotion.current = mq.matches
-    const handler = (e) => { prefersReducedMotion.current = e.matches }
+    setPrefersReducedMotion(mq.matches)
+    const handler = (e) => setPrefersReducedMotion(e.matches)
     mq.addEventListener('change', handler)
     return () => mq.removeEventListener('change', handler)
   }, [])
 
-  // 计算列数
+  // 计算列数与窗口尺寸
   useEffect(() => {
+    if (!isBrowser) return
+
     let ticking = false
     const updateColumns = () => {
       const width = window.innerWidth
+      const height = window.innerHeight
       let cols = Math.floor(width / config.minColumnWidth)
       cols = Math.max(2, Math.min(cols, 10))
       setColumns(cols)
+      setDimensions({ width, height })
     }
 
     const onResize = () => {
@@ -71,6 +82,7 @@ export default function PhotoWall() {
 
   // 滚动监听
   useEffect(() => {
+    if (!isBrowser) return
     let ticking = false
     const handleScroll = () => {
       if (!ticking) {
@@ -86,90 +98,38 @@ export default function PhotoWall() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // 容器高度
-  const containerHeight = useMemo(() => {
-    return window.innerHeight * 4
-  }, [])
+  const containerHeight = useMemo(
+    () => dimensions.height * 4,
+    [dimensions.height]
+  )
 
-  // 缓存 DOM 引用以避免每帧 querySelectorAll
+  // 缓存 DOM 元素及其动画参数（避免每帧 parseFloat dataset）
   const cachePhotoElements = useCallback(() => {
     const container = containerRef.current
-    if (container) {
-      photoElementsRef.current = Array.from(container.querySelectorAll('.photo-item'))
-    }
+    if (!container) return
+
+    const elements = Array.from(container.querySelectorAll('.photo-item'))
+    photoDataRef.current = elements.map((el) => ({
+      el,
+      baseY: parseFloat(el.dataset.basey) || 0,
+      parallax: parseFloat(el.dataset.parallax) || 1,
+      colIndex: parseInt(el.dataset.colIndex) || 0,
+    }))
   }, [])
-
-  // 动画循环
-  useEffect(() => {
-    if (prefersReducedMotion.current) return
-
-    // 延迟缓存 DOM（等渲染完成后）
-    requestAnimationFrame(() => {
-      cachePhotoElements()
-    })
-
-    let lastTime = performance.now()
-
-    const animate = (time) => {
-      rafRef.current = requestAnimationFrame(animate)
-
-      const delta = time - lastTime
-      lastTime = time
-
-      // 限制 delta 防止跳帧后的大幅跳跃
-      const clampedDelta = Math.min(delta, 50)
-
-      const scrollY = scrollRef.current
-      const autoScroll = time * 0.02
-
-      const elements = photoElementsRef.current
-      if (elements.length === 0) return
-
-      const loopHeights = columnLoopHeightsRef.current
-
-      for (let i = 0; i < elements.length; i++) {
-        const child = elements[i]
-        const baseYPos = parseFloat(child.dataset.basey) || 0
-        const parallaxFactor = parseFloat(child.dataset.parallax) || 1
-        const colIndex = parseInt(child.dataset.colIndex) || 0
-
-        const singleLoopHeight = loopHeights[colIndex] || 1
-        if (singleLoopHeight <= 0) continue
-
-        // 滚动在一个循环内的偏移量（实现无限循环）
-        const loopScroll = (scrollY + autoScroll) % singleLoopHeight
-
-        // 滚动视差：不同列以不同速度滚动
-        const parallaxOffset = loopScroll * (parallaxFactor - 1) * 0.5
-
-        // 呼吸效果 - 基于时间浮动（用 baseY % singleLoopHeight 保证循环时模式连续）
-        const breathe = Math.sin(time * 0.001 + (baseYPos % singleLoopHeight) * 0.002) * 6
-
-        // 视差缩放 - 周期性的微妙缩放
-        const scale = 1 + Math.sin(time * 0.0008 + (baseYPos % singleLoopHeight) * 0.003) * 0.02 * parallaxFactor
-
-        // 最终位移 = 循环偏移 + 视差偏移 + 呼吸
-        const y = -loopScroll - parallaxOffset + breathe
-
-        child.style.transform = `translateY(${y}px) scale(${scale})`
-      }
-    }
-
-    rafRef.current = requestAnimationFrame(animate)
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-    }
-  }, [cachePhotoElements])
 
   // 渲染布局 - 双缓冲：每列渲染两套相同照片，实现首尾无缝循环
   const photoLayout = useMemo(() => {
-    const colWidth = (window.innerWidth - config.gap * (columns + 1)) / columns
-    const cols = Array.from({ length: columns }, () => ({ photos: [], height: 0 }))
+    const colWidth = (dimensions.width - config.gap * (columns + 1)) / columns
+    const cols = Array.from({ length: columns }, () => ({
+      photos: [],
+      height: 0,
+    }))
 
     // 确保一套照片的高度 >= 容器高度，这样双缓冲后才能无缝覆盖
     const singlePhotoHeight = colWidth / 2 + config.gap
     const minLoops = Math.ceil(containerHeight / singlePhotoHeight)
-    const totalLoops = Math.max(minLoops, 30)
+    // 降低上限，减少 DOM 节点数量（原 30，对移动端过重）
+    const totalLoops = Math.max(minLoops, 10)
 
     // 生成两套完全相同的照片序列
     for (let set = 0; set < 2; set++) {
@@ -201,11 +161,76 @@ export default function PhotoWall() {
     columnLoopHeightsRef.current = cols.map((c) => c.height / 2)
 
     return cols
-  }, [columns, containerHeight])
+  }, [columns, containerHeight, dimensions.width])
 
-  const columnWidth = useMemo(() => {
-    return (window.innerWidth - config.gap * (columns + 1)) / columns
-  }, [columns])
+  const columnWidth = useMemo(
+    () => (dimensions.width - config.gap * (columns + 1)) / columns,
+    [dimensions.width, columns]
+  )
+
+  // 动画循环 - 依赖 photoLayout，列数变化后会重新缓存 DOM
+  useEffect(() => {
+    if (!isBrowser || prefersReducedMotion) return
+
+    // 等本次 photoLayout 渲染完成后再缓存 DOM
+    requestAnimationFrame(() => {
+      cachePhotoElements()
+    })
+
+    let lastTime = performance.now()
+
+    const animate = (time) => {
+      rafRef.current = requestAnimationFrame(animate)
+
+      const delta = time - lastTime
+      lastTime = time
+
+      // 限制 delta 防止跳帧后的大幅跳跃
+      Math.min(delta, 50)
+
+      const scrollY = scrollRef.current
+      const autoScroll = time * 0.02
+
+      const photoData = photoDataRef.current
+      if (photoData.length === 0) return
+
+      const loopHeights = columnLoopHeightsRef.current
+
+      for (let i = 0; i < photoData.length; i++) {
+        const { el, baseY, parallax, colIndex } = photoData[i]
+
+        const singleLoopHeight = loopHeights[colIndex] || 1
+        if (singleLoopHeight <= 0) continue
+
+        // 滚动在一个循环内的偏移量（实现无限循环）
+        const loopScroll = (scrollY + autoScroll) % singleLoopHeight
+
+        // 滚动视差：不同列以不同速度滚动
+        const parallaxOffset = loopScroll * (parallax - 1) * 0.5
+
+        // 呼吸效果 - 基于时间浮动（用 baseY % singleLoopHeight 保证循环时模式连续）
+        const breathe =
+          Math.sin(time * 0.001 + (baseY % singleLoopHeight) * 0.002) * 6
+
+        // 视差缩放 - 周期性的微妙缩放
+        const scale =
+          1 +
+          Math.sin(time * 0.0008 + (baseY % singleLoopHeight) * 0.003) *
+            0.02 *
+            parallax
+
+        // 最终位移 = 循环偏移 + 视差偏移 + 呼吸
+        const y = -loopScroll - parallaxOffset + breathe
+
+        el.style.transform = `translateY(${y}px) scale(${scale})`
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(animate)
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [cachePhotoElements, photoLayout, prefersReducedMotion])
 
   return (
     <div

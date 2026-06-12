@@ -16,6 +16,12 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Generated files
+client/src/photos.js
+
 # Environment
 .env
 .env.local

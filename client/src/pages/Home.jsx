@@ -23,12 +23,12 @@ function GlassCard({ children, className = '' }) {
 export default function Home() {
   const [selectedTag, setSelectedTag] = useState('全部')
   const [showAll, setShowAll] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 })
 
-  // 鼠标跟随光晕效果
+  // 鼠标跟随光晕效果 - 用 CSS 变量更新，避免每帧触发 React 重渲染
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`)
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`)
     }
 
     window.addEventListener('mousemove', handleMouseMove)
@@ -46,13 +46,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* 鼠标跟随光晕 */}
-      <div
-        className="mouse-glow hidden md:block"
-        style={{
-          left: mousePos.x,
-          top: mousePos.y,
-        }}
-      />
+      <div className="mouse-glow hidden md:block" />
 
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
         <PhotoWall />

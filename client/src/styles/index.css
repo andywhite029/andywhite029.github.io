@@ -112,6 +112,8 @@ a {
 /* 鼠标跟随光晕 */
 .mouse-glow {
   position: fixed;
+  left: var(--mouse-x, -1000px);
+  top: var(--mouse-y, -1000px);
   width: 200px;
   height: 200px;
   border-radius: 50%;

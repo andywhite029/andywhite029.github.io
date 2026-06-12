@@ -1,22 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import viteImagemin from 'vite-plugin-imagemin'
+
+// 图片压缩由 scripts/compress-images.js 在 build 前统一处理，
+// 这里不再引入 vite-plugin-imagemin，避免重复压缩和 Windows 构建依赖问题。
 
 export default defineConfig({
-  plugins: [
-    react(),
-    viteImagemin({
-      gifsicle: { optimizationLevel: 7, interlaced: false },
-      optipng: { optimizationLevel: 7 },
-      mozjpeg: { quality: 75 },
-      pngquant: { quality: [0.8, 0.9], speed: 4 },
-      svgo: {
-        plugins: [
-          { name: 'remove-viewBox' },
-          { name: 'removeDimensions' },
-        ],
-      },
-      webp: { quality: 75 },
-    }),
-  ],
+  base: process.env.BASE_URL || '/',
+  plugins: [react()],
 })
