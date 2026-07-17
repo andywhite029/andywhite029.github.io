@@ -15,14 +15,14 @@ export const translations = {
     hero: {
       frame: 'Frame 00 // Intro',
       title: 'Andy',
-      subtitle: 'Working between darkroom red and terminal green',
+      subtitle: 'Making hard-core technology seen, understood, and remembered',
       description: "I'm Andy, a translator of technology through imagery and code. I specialize in brand communication, photography, and AI-era visual storytelling.",
     },
     about: {
       frame: 'Frame 04 // About',
       title: 'Translating technology\nthrough imagery and code',
       paragraphs: [
-        "I'm Andy, someone who works between darkroom red and terminal green.",
+        "I'm Andy, someone who tells technology stories through lens and words.",
         "My identity spans three fields: the eye of a photographer, the narrative skills of brand PR, and the visual translation of technical concepts in the AI era. I believe that even the most complex technology deserves to be captured as a warm photograph and written as rhythmic prose.",
         "From a photojournalist at Shaanxi TV, to intelligent driving communications at Momenta and QCraft, and now to robot data and simulation evaluation PR at Lightwheel AI — I've always been doing the same thing: making hard-core technology seen, understood, and remembered by more people.",
       ],
@@ -131,14 +131,14 @@ export const translations = {
     hero: {
       frame: 'Frame 00 // Intro',
       title: 'Andy',
-      subtitle: '在暗房红光和终端绿光之间工作',
+      subtitle: '让硬核科技被看见、理解、记住',
       description: '我是 Andy，一名在影像与代码之间翻译技术语言的人。擅长品牌传播、摄影摄像和 AI 时代的视觉叙事。',
     },
     about: {
       frame: 'Frame 04 // About',
       title: '在影像与代码之间，\n翻译技术的语言',
       paragraphs: [
-        '我是 Andy，一名在暗房红光和终端绿光之间工作的人。',
+        '我是 Andy，一名用镜头和文字讲述技术故事的人。',
         '我的身份横跨三个领域：摄影师的眼睛、品牌公关的叙事能力，以及 AI 时代对技术概念的视觉转译。我相信，再复杂的技术，也值得被拍成一张有温度的照片、写成一段有节奏的文字。',
         '从陕西电视台的摄影记者，到 Momenta、轻舟智航的智能驾驶传播，再到如今光轮智能的机器人数据与仿真评测公关——我一直在做同一件事：让硬核科技被更多人看见、理解、记住。',
       ],

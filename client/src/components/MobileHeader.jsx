@@ -26,7 +26,7 @@ export default function MobileHeader() {
         <div>
           <div className="font-serif text-xl font-bold">Andy</div>
           <div className="font-mono text-[10px] text-text-secondary tracking-wider">
-            暗房与终端
+            影像 × 代码
           </div>
         </div>
 
