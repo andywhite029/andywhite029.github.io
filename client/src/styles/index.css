@@ -3,13 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #FAFAF9;
-  --bg-secondary: #F5F5F4;
-  --text-primary: #1C1917;
-  --text-secondary: #78716C;
-  --accent: #E2A3AD;
-  --accent-hover: #A4697B;
-  --border: #E7E5E4;
+  --bg-primary: #050303;
+  --bg-secondary: #0a0808;
+  --bg-terminal: #0a0a0f;
+  --text-primary: #e8ddd0;
+  --text-secondary: #a89b8c;
+  --accent-red: #cc1100;
+  --accent-red-glow: #ff2200;
+  --accent-red-dark: #550000;
+  --accent-green: #00ff41;
+  --accent-green-dim: #00aa2a;
+  --border: #2a1a1a;
 }
 
 * {
@@ -19,7 +23,29 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* 无障碍：尊重用户减少动画偏好 */
@@ -41,39 +67,34 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background-color: var(--accent);
-  color: white;
+  background-color: var(--accent-red);
+  color: var(--text-primary);
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: var(--accent-red-dark);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--accent-red);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-.container {
-  width: 100%;
-  max-width: 1920px;
-  margin-inline: auto;
 }
 
 @layer utilities {
@@ -85,46 +106,22 @@ a {
   }
 }
 
-.gradient-border {
-  position: relative;
-  background: transparent;
-  border-radius: 1.5rem;
+/* 终端光标闪烁 */
+.terminal-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  background-color: var(--accent-green);
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
 }
 
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(226, 163, 173, 0.6) 0%,
-    rgba(168, 85, 247, 0.3) 50%,
-    rgba(226, 163, 173, 0.6) 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-/* 鼠标跟随光晕 */
-.mouse-glow {
-  position: fixed;
-  left: var(--mouse-x, -1000px);
-  top: var(--mouse-y, -1000px);
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(226, 163, 173, 0.5) 0%,
-    rgba(226, 163, 173, 0.3) 50%,
-    transparent 70%
-  );
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  filter: blur(30px);
+/* 垂直文字 */
+.writing-vertical {
+  writing-mode: vertical-rl;
 }
