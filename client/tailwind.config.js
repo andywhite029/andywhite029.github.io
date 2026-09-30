@@ -24,34 +24,6 @@ export default {
         'sans': ['Source Sans 3', 'system-ui', 'sans-serif'],
         'mono': ['JetBrains Mono', 'monospace'],
       },
-      spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-        '128': '32rem',
-      },
-      maxWidth: {
-        'content': '1920px',
-        'page': '1920px',
-      },
-      animation: {
-        'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
-        'scan': 'scan 8s linear infinite',
-        'flicker': 'flicker 3s infinite',
-      },
-      keyframes: {
-        'pulse-slow': {
-          '0%, 100%': { opacity: '0.6' },
-          '50%': { opacity: '1' },
-        },
-        'scan': {
-          '0%': { transform: 'translateY(-100%)' },
-          '100%': { transform: 'translateY(100vh)' },
-        },
-        'flicker': {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.95' },
-        },
-      },
     },
   },
   plugins: [],
