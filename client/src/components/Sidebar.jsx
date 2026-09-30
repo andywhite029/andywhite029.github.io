@@ -81,7 +81,7 @@ export default function Sidebar() {
             <Github size={18} />
           </a>
           <a
-            href="mailto:andywhite029@gmail.com"
+            href="mailto:srkang@qq.com"
             className="text-text-secondary hover:text-accent-red transition-colors"
             aria-label="Email"
           >
