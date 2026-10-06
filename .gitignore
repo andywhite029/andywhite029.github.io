@@ -26,3 +26,9 @@ client/src/photos.js
 .env
 .env.local
 .env.*.local
+
+# Local redesign source assets (keep the folder structure and guide)
+/素材/**
+!/素材/**/
+!/素材/**/.gitkeep
+!/素材/README.md

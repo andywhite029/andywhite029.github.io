@@ -1,0 +1,227 @@
+{
+  "generated": "阶段一 + 阶段二",
+  "items": [
+    {
+      "output": "qcraft/qcraft-live-home.webp",
+      "source": "https://www.qcraft.ai/en",
+      "captured": "2026-10-07",
+      "spec": "Browser screenshot of the live homepage, 1430x894 pixels, WebP quality 85"
+    },
+    {
+      "output": "momenta/technology.mp4 + technology-poster.webp",
+      "source": "https://www.momenta.cn/video/texiao.mp4?v=1213",
+      "spec": "Official technology film, full duration, 960w h264 crf28; poster at 2s"
+    },
+    {
+      "output": "qcraft/technology.mp4 + technology-poster.webp",
+      "source": "素材/02-轻舟智航/官网项目/仓库精选素材/tech/tech-1.mp4",
+      "spec": "Original website technology video; poster at 1s"
+    },
+    {
+      "output": "hero/andy-opening.mp4",
+      "source": "素材/01-光轮智能/RoboStack/RoboStack成都.mp4",
+      "timeRange": "3.2s +5.4s",
+      "spec": "h264 1280w crf26 无音轨"
+    },
+    {
+      "output": "guanglun/robostack-stage.mp4",
+      "source": "素材/01-光轮智能/RoboStack/RoboStack成都.mp4",
+      "timeRange": "82.4s +6s",
+      "spec": "h264 1600w crf27 无音轨"
+    },
+    {
+      "output": "guanglun/continuous-learning.mp4",
+      "source": "素材/01-光轮智能/持续学习系统/持续学习final.mp4",
+      "timeRange": "75.8s +10.2s",
+      "spec": "h264 1600w crf27 无音轨"
+    },
+    {
+      "output": "guanglun/wrc-dataset.mp4",
+      "source": "素材/01-光轮智能/WRC2026/开源数据集发布视频.mp4",
+      "timeRange": "29.4s +8s",
+      "spec": "h264 1280w crf27 无音轨"
+    },
+    {
+      "output": "hero/andy-opening-poster.webp",
+      "source": "素材/01-光轮智能/RoboStack/RoboStack成都.mp4",
+      "timeRange": "抽帧 5.4s",
+      "spec": "webp 1280w q78"
+    },
+    {
+      "output": "guanglun/robostack-stage-poster.webp",
+      "source": "素材/01-光轮智能/RoboStack/RoboStack成都.mp4",
+      "timeRange": "抽帧 85.2s",
+      "spec": "webp 1600w q78"
+    },
+    {
+      "output": "guanglun/continuous-learning-poster.webp",
+      "source": "素材/01-光轮智能/持续学习系统/持续学习final.mp4",
+      "timeRange": "抽帧 82.5s",
+      "spec": "webp 1600w q78"
+    },
+    {
+      "output": "guanglun/wrc-dataset-poster.webp",
+      "source": "素材/01-光轮智能/WRC2026/开源数据集发布视频.mp4",
+      "timeRange": "抽帧 33.5s",
+      "spec": "webp 1280w q78"
+    },
+    {
+      "output": "qcraft/hero-road-1920.webp",
+      "source": "素材/02-轻舟智航/官网项目/仓库精选素材/home/hero-web.jpg",
+      "spec": "webp 1920w q78"
+    },
+    {
+      "output": "qcraft/hero-road-1080.webp",
+      "source": "素材/02-轻舟智航/官网项目/仓库精选素材/home/hero-web.jpg",
+      "spec": "webp 1080w q78"
+    },
+    {
+      "output": "qcraft/tech-overview-1200.webp",
+      "source": "素材/02-轻舟智航/官网项目/仓库精选素材/home/tech-overview.jpg",
+      "spec": "webp 1200w q78"
+    },
+    {
+      "output": "qcraft/ai-architecture-1200.webp",
+      "source": "素材/02-轻舟智航/官网项目/仓库精选素材/tech/ai-architecture.jpg",
+      "spec": "webp 1200w q78"
+    },
+    {
+      "output": "brands/qcraft-logo.png",
+      "source": "素材/02-轻舟智航/品牌资料/QCRAFT LOGO-主要标志-原色.png",
+      "spec": "png 1400w"
+    },
+    {
+      "output": "brands/qcraft-logo-white.png",
+      "source": "素材/02-轻舟智航/品牌资料/QCRAFT LOGO-主要标志-白色.png",
+      "spec": "png 1400w"
+    },
+    {
+      "output": "brands/guanglun-logo.png",
+      "source": "素材/01-光轮智能/品牌资料/Guanglun_Primary_Horizontal_FullColor_Light_RGB_01.png",
+      "spec": "原样复制"
+    },
+    {
+      "output": "brands/momenta.png",
+      "source": "素材/03-Momenta/品牌资料/momenta-logo-header-official.png",
+      "spec": "原样复制"
+    },
+    {
+      "output": "brands/zeekr-wordmark.png",
+      "source": "素材/04-极氪/品牌资料/zeekr-wordmark-official.png",
+      "spec": "原样复制"
+    },
+    {
+      "output": "brands/xiaomi.png",
+      "source": "素材/05-小米之家/品牌资料/xiaomi-logo-official-static.png",
+      "spec": "原样复制"
+    },
+    {
+      "output": "momenta/hero-800.webp",
+      "source": "素材/03-Momenta/官网素材/mpilot-desktop.jpg",
+      "spec": "webp max 800w q80"
+    },
+    {
+      "output": "momenta/hero-1600.webp",
+      "source": "素材/03-Momenta/官网素材/mpilot-desktop.jpg",
+      "spec": "webp max 1600w q80"
+    },
+    {
+      "output": "zeekr/hero-800.webp",
+      "source": "素材/04-极氪/官网素材/zeekr-001.jpg",
+      "spec": "webp max 800w q80"
+    },
+    {
+      "output": "zeekr/hero-1600.webp",
+      "source": "素材/04-极氪/官网素材/zeekr-001.jpg",
+      "spec": "webp max 1600w q80"
+    },
+    {
+      "output": "xiaomi/hero-800.webp",
+      "source": "素材/05-小米之家/官网素材/xiaomi-15-hero.webp",
+      "spec": "webp max 800w q80"
+    },
+    {
+      "output": "xiaomi/hero-1600.webp",
+      "source": "素材/05-小米之家/官网素材/xiaomi-15-hero.webp",
+      "spec": "webp max 1600w q80"
+    },
+    {
+      "output": "xiaomi/devices-800.webp",
+      "source": "素材/05-小米之家/官网素材/xiaomi-personal-devices.jpg",
+      "spec": "webp max 800w q80"
+    },
+    {
+      "output": "xiaomi/devices-1600.webp",
+      "source": "素材/05-小米之家/官网素材/xiaomi-personal-devices.jpg",
+      "spec": "webp max 1600w q80"
+    },
+    {
+      "output": "xiaomi/home-800.webp",
+      "source": "素材/05-小米之家/官网素材/xiaomi-smart-home.jpg",
+      "spec": "webp max 800w q80"
+    },
+    {
+      "output": "xiaomi/home-1600.webp",
+      "source": "素材/05-小米之家/官网素材/xiaomi-smart-home.jpg",
+      "spec": "webp max 1600w q80"
+    },
+    {
+      "output": "momenta/wicv-800.webp",
+      "source": "client/public/photos/momenta-wicv.webp",
+      "spec": "webp max 800w q80"
+    },
+    {
+      "output": "momenta/wicv-1600.webp",
+      "source": "client/public/photos/momenta-wicv.webp",
+      "spec": "webp max 1600w q80"
+    },
+    {
+      "output": "photography/000038.webp",
+      "source": "client/public/photos/000038.webp",
+      "spec": "Original webp; no enlargement"
+    },
+    {
+      "output": "photography/000044.webp",
+      "source": "client/public/photos/000044.webp",
+      "spec": "Original webp; no enlargement"
+    },
+    {
+      "output": "photography/000016.webp",
+      "source": "client/public/photos/000016.webp",
+      "spec": "Original webp; no enlargement"
+    },
+    {
+      "output": "photography/000053.webp",
+      "source": "client/public/photos/000053.webp",
+      "spec": "Original webp; no enlargement"
+    },
+    {
+      "output": "photography/000057.webp",
+      "source": "client/public/photos/000057.webp",
+      "spec": "Original webp; no enlargement"
+    },
+    {
+      "output": "photography/000062.webp",
+      "source": "client/public/photos/000062.webp",
+      "spec": "Original webp; no enlargement"
+    },
+    {
+      "output": "guanglun/robostack-full.mp4",
+      "source": "素材/01-光轮智能/RoboStack/RoboStack成都.mp4",
+      "timeRange": "Full duration",
+      "spec": "H.264 up to 1920w CRF25, AAC 128k original audio, faststart"
+    },
+    {
+      "output": "guanglun/continuous-learning-full.mp4",
+      "source": "素材/01-光轮智能/持续学习系统/持续学习final.mp4",
+      "timeRange": "Full duration",
+      "spec": "H.264 up to 1920w CRF25, AAC 128k original audio, faststart"
+    },
+    {
+      "output": "guanglun/wrc-dataset-full.mp4",
+      "source": "素材/01-光轮智能/WRC2026/开源数据集发布视频.mp4",
+      "timeRange": "Full duration",
+      "spec": "H.264 up to 1920w CRF25, AAC 128k original audio, faststart"
+    }
+  ]
+}

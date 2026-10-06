@@ -1,72 +1,47 @@
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { useLanguage } from '../../context/LanguageContext'
 import { translations } from '../../data/translations'
+import PhotographySection from './PhotographySection'
 
-gsap.registerPlugin(ScrollTrigger)
-
+/** 关于：三项能力 + 一段自述 + 两行早期经历（安静的文字版面）。 */
 export default function AboutSection() {
-  const sectionRef = useRef(null)
-  const contentRef = useRef(null)
-  const reducedMotion = useReducedMotion()
   const { language } = useLanguage()
   const t = translations[language]
-
-  useEffect(() => {
-    if (reducedMotion) return
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [reducedMotion])
+  const a = t.about
 
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      className="py-16 lg:py-24 border-t border-border"
-    >
-      <div className="font-mono text-xs text-accent-red tracking-[0.3em] mb-6 uppercase">
-        {t.about.frame}
-      </div>
+    <section id="about" className="bg-paper-warm text-ink">
+      <PhotographySection />
+      <div className="mx-auto w-full max-w-content px-5 py-24 md:px-8 md:py-32">
+        <p className="eyebrow text-ink-faint">
+          {t.common.chapter} {a.index}
+        </p>
+        <h2 className="chapter-title mt-3 max-w-2xl">{a.title}</h2>
 
-      <div ref={contentRef}>
-        <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary mb-8 whitespace-pre-line">
-          {t.about.title}
-        </h2>
-
-        <div className="space-y-6 text-text-secondary leading-relaxed max-w-2xl">
-          {t.about.paragraphs.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
+        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          {a.capabilities.map((c, i) => (
+            <div key={c.title} className="border-t-2 border-ink/80 pt-5">
+              <p className="text-[13px] font-semibold text-ink-faint">{String(i + 1).padStart(2, '0')}</p>
+              <h3 className="mt-2 text-[20px] font-bold md:text-[22px]">{c.title}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{c.desc}</p>
+            </div>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          {t.about.tags.map((tag) => (
-            <span
-              key={tag}
-              className="font-mono text-xs px-3 py-1.5 border border-border text-text-secondary rounded-full hover:border-accent-red hover:text-accent-red transition-colors"
-            >
-              {tag}
-            </span>
+        <div className="mt-16 max-w-3xl md:mt-20">
+          {a.bio.map((p) => (
+            <p key={p.slice(0, 24)} className="text-[19px] font-medium leading-relaxed text-ink md:text-[22px]">
+              {p}
+            </p>
+          ))}
+        </div>
+
+        <div className="mt-14 max-w-3xl">
+          {a.early.map((e) => (
+            <div key={e.org} className="grid gap-1 border-t border-ink/10 py-5 sm:grid-cols-12 sm:gap-4">
+              <p className="text-[13px] font-medium text-ink-faint sm:col-span-3">{e.time}</p>
+              <p className="text-[15px] font-semibold sm:col-span-3">{e.org}</p>
+              <p className="text-[14px] leading-relaxed text-ink-soft sm:col-span-6">{e.desc}</p>
+            </div>
           ))}
         </div>
       </div>

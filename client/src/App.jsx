@@ -1,16 +1,16 @@
-import { LenisProvider } from './hooks/useLenis'
-import { ScrollProgressProvider } from './context/ScrollProgressContext'
 import { LanguageProvider } from './context/LanguageContext'
+import { MobileProvider } from './hooks/useIsMobile'
+import { LenisProvider } from './hooks/useLenis'
 import Home from './pages/Home'
 
 function App() {
   return (
     <LanguageProvider>
-      <LenisProvider>
-        <ScrollProgressProvider>
+      <MobileProvider>
+        <LenisProvider>
           <Home />
-        </ScrollProgressProvider>
-      </LenisProvider>
+        </LenisProvider>
+      </MobileProvider>
     </LanguageProvider>
   )
 }

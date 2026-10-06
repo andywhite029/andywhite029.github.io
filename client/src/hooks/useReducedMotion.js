@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react'
 
+const QUERY = '(prefers-reduced-motion: reduce)'
+
 export function useReducedMotion() {
-  const [reducedMotion, setReducedMotion] = useState(false)
+  const [reduced, setReduced] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(QUERY).matches,
+  )
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReducedMotion(mediaQuery.matches)
-
-    const handleChange = (event) => {
-      setReducedMotion(event.matches)
-    }
-
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
+    const mql = window.matchMedia(QUERY)
+    const onChange = () => setReduced(mql.matches)
+    mql.addEventListener('change', onChange)
+    return () => mql.removeEventListener('change', onChange)
   }, [])
 
-  return reducedMotion
+  return reduced
 }

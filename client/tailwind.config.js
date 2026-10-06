@@ -7,22 +7,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#050303',
-        'bg-secondary': '#0a0808',
-        'bg-terminal': '#0a0a0f',
-        'text-primary': '#e8ddd0',
-        'text-secondary': '#a89b8c',
-        'accent-red': '#cc1100',
-        'accent-red-glow': '#ff2200',
-        'accent-red-dark': '#550000',
-        'accent-green': '#00ff41',
-        'accent-green-dim': '#00aa2a',
-        'border': '#2a1a1a',
+        // 中性基础：纸白 / 炭黑 / 灰阶
+        paper: '#FAFAF8',
+        'paper-warm': '#F4F3EF',
+        ink: '#17171B',
+        'ink-soft': '#4A4B52',
+        'ink-faint': '#8B8C94',
+        line: '#E6E5E0',
+        'momenta-blue': '#0068DF',
+        'xiaomi-orange': '#FF6900',
+        // 光轮智能（取自《光轮智能 BRANDguidelines 2026》色彩系统）
+        'gl-blue': '#4123F5',   // 光蓝·主色
+        'gl-purple': '#0F053C', // 文紫
+        'gl-night': '#07031A',  // 夜黑（章节底色在此基础上渐变）
+        'gl-silver': '#F4F4F5', // 雾银
+        'gl-mist': '#A6A0C8',   // 深底上的弱化文字（设计用色）
+        // 轻舟智航（品牌信息.md 确认主色；hover/soft 为 qcraft-web 官方设计参考值）
+        'qc-green': '#15CC8A',
+        'qc-deep': '#11B87B',
+        'qc-soft': '#E6FAF2',
+        'qc-graphite': '#20242B',
       },
       fontFamily: {
-        'serif': ['Noto Serif SC', 'Georgia', 'serif'],
-        'sans': ['Source Sans 3', 'system-ui', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'monospace'],
+        sans: ['"Source Sans 3"', '"Noto Sans SC"', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        content: '1200px',
       },
     },
   },
