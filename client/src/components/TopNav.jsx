@@ -3,6 +3,7 @@ import { X } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { translations, SECTIONS } from '../data/translations'
 import { scrollToSection, useLenis } from '../hooks/useLenis'
+import { useReducedMotion } from '../hooks/useReducedMotion'
 
 const WORK_SECTIONS = SECTIONS.filter((s) => ['guanglun', 'qcraft', 'momenta', 'zeekr', 'xiaomi'].includes(s.id))
 
@@ -33,6 +34,9 @@ export default function TopNav() {
   const { language } = useLanguage()
   const t = translations[language]
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const [keyboardNavigation, setKeyboardNavigation] = useState(false)
+  const reducedMotion = useReducedMotion()
   const [worksOpen, setWorksOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const worksTimer = useRef(null)
@@ -41,7 +45,32 @@ export default function TopNav() {
   const lenis = useLenis()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onKeyDown = (event) => {
+      if (event.key === 'Tab') setKeyboardNavigation(true)
+    }
+    const onPointerDown = () => setKeyboardNavigation(false)
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [])
+
+  useEffect(() => {
+    let previousY = Math.max(0, window.scrollY)
+    const onScroll = () => {
+      const y = Math.max(0, Math.min(window.scrollY,
+        document.documentElement.scrollHeight - window.innerHeight))
+      setScrolled(y > 24)
+      if (y <= 56) {
+        setHidden(false)
+        previousY = y
+      } else if (Math.abs(y - previousY) >= 10) {
+        setHidden(y > previousY)
+        previousY = y
+      }
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -92,10 +121,12 @@ export default function TopNav() {
       </a>
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 ${keyboardNavigation ? 'focus-within:translate-y-0' : ''} ${
+          reducedMotion ? 'transition-none' : 'transition-[transform,background-color,color,border-color] duration-300'
+        } ${hidden && !worksOpen && !mobileOpen ? '-translate-y-full' : 'translate-y-0'} ${
           scrolled
             ? 'border-b border-line bg-paper/85 text-ink backdrop-blur-md'
-            : 'border-b border-transparent bg-gradient-to-b from-black/70 via-black/35 to-transparent text-white'
+            : 'border-0 bg-transparent text-white'
         }`}
       >
         <nav className="mx-auto flex h-14 max-w-content items-center justify-between px-5 md:px-8" aria-label="Main">

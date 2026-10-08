@@ -6,9 +6,11 @@ import { useIsMobile } from '../hooks/useIsMobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const CENTER_LINE = 'inset(calc(50% - 1px) 6% calc(50% - 1px) 6%)'
+
 /**
  * 光轮智能 → 轻舟智航 的边界转场（方案 §6）：
- * 深色影像收束为横向窗口，绿色道路图从同一窗口扩展，绿色细线扫入。
+ * 光轮影像收束为中心线，线条转绿后展开为轻舟道路图。
  * 移动端与 reduced-motion 下不渲染，两章直接相接。
  */
 export default function GuanglunQcraftTransition() {
@@ -24,6 +26,12 @@ export default function GuanglunQcraftTransition() {
   useEffect(() => {
     if (!enabled) return undefined
     const ctx = gsap.context(() => {
+      const stage = imageARef.current
+      const lineClip = () => {
+        const vertical = stage.offsetHeight / 2 - 1
+        const horizontal = stage.offsetWidth * 0.06
+        return `inset(${vertical}px ${horizontal}px ${vertical}px ${horizontal}px)`
+      }
       const tl = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: {
@@ -31,21 +39,22 @@ export default function GuanglunQcraftTransition() {
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.5,
+          invalidateOnRefresh: true,
         },
       })
-      // 阶段一：暗色影像收束为横向窗口
-      tl.to(imageARef.current, { clipPath: 'inset(22% 6% 22% 6%)', scale: 0.98, duration: 0.42 }, 0)
-        // 阶段二：窗口内交叉淡化为绿色道路图
-        .to(imageARef.current, { opacity: 0, duration: 0.12 }, 0.46)
-        .fromTo(
-          imageBRef.current,
-          { clipPath: 'inset(22% 6% 22% 6%)' },
-          { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.45 },
-          0.46,
-        )
-        // 绿色细线扫入后淡出
-        .fromTo(lineRef.current, { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.3 }, 0.55)
-        .to(lineRef.current, { opacity: 0, duration: 0.12 }, 0.9)
+      // 同一裁切位置完成交接，收拢前不露出下一章的画面。
+      tl.fromTo(imageARef.current,
+        { clipPath: 'inset(0px 0px 0px 0px)' },
+        { clipPath: lineClip, duration: 0.38, ease: 'power1.inOut' }, 0.08)
+        .to(lineRef.current, { opacity: 1, duration: 0.06 }, 0.4)
+        .set(imageARef.current, { opacity: 0 }, 0.46)
+        .to(lineRef.current, { backgroundColor: '#15CC8A', duration: 0.1 }, 0.42)
+        .set(imageBRef.current, { opacity: 1 }, 0.5)
+        .fromTo(imageBRef.current, { clipPath: lineClip }, {
+          clipPath: 'inset(0px 0px 0px 0px)', duration: 0.38, ease: 'power1.inOut',
+        }, 0.5)
+        .to(lineRef.current, { opacity: 0, duration: 0.1 }, 0.52)
+        .to(imageBRef.current, { opacity: 1, duration: 0.12 }, 0.88)
     }, sectionRef)
     return () => ctx.revert()
   }, [enabled])
@@ -53,7 +62,7 @@ export default function GuanglunQcraftTransition() {
   if (!enabled) return null
 
   return (
-    <div ref={sectionRef} className="relative bg-paper" style={{ height: '170vh' }}>
+    <div ref={sectionRef} className="relative bg-gl-night" style={{ height: '200vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         <img
           ref={imageBRef}
@@ -61,7 +70,7 @@ export default function GuanglunQcraftTransition() {
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ clipPath: 'inset(22% 6% 22% 6%)' }}
+          style={{ clipPath: CENTER_LINE, opacity: 0 }}
           loading="lazy"
           decoding="async"
         />
@@ -70,15 +79,14 @@ export default function GuanglunQcraftTransition() {
           src="/assets-v2/guanglun/continuous-learning-poster.webp"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover will-change-transform"
+          className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
           decoding="async"
         />
         <div
           ref={lineRef}
           aria-hidden="true"
-          className="absolute left-0 right-0 top-1/2 h-[2px] origin-left bg-qc-green"
-          style={{ transform: 'scaleX(0)' }}
+          className="pointer-events-none absolute left-[6%] right-[6%] top-1/2 h-[2px] -translate-y-1/2 bg-gl-blue opacity-0"
         />
       </div>
     </div>

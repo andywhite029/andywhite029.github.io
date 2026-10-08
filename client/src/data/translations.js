@@ -23,11 +23,11 @@ export const BRAND_STRIP = [
 export const translations = {
   en: {
     nav: {
-      works: 'Works',
+      works: 'Experience',
       about: 'About',
       contact: 'Contact',
       menu: 'Menu',
-      openWorks: 'Works directory',
+      openWorks: 'Experience directory',
       skipToContent: 'Skip to content',
       languageButton: '切换到中文',
     },
@@ -173,7 +173,7 @@ export const translations = {
     detail: { open: 'View project', close: 'Close details', role: 'My role', work: 'Work & context', results: 'Results', share: 'Copy project link', copied: 'Link copied', copyFailed: 'Could not copy. The address bar contains this project link.', official: 'Official brand imagery', personal: 'Personal photography', previous: 'Previous photograph', next: 'Next photograph', language: '切换到中文', websiteContext: 'The images are assets from the website project. They are not screenshots of the delivered pages.', publishedContext: 'Published video excerpt. The original link opens the full publication.' },
     about: {
       index: '06',
-      title: 'One person, three crafts',
+      title: 'Three ways to make technology visible',
       capabilities: [
         { title: 'Brand Communication', desc: 'Tech brand PR, content operations and event communications that make complex products legible.' },
         { title: 'Visual Storytelling', desc: 'Photography and filmmaking — turning labs, roads and robots into images people remember.' },
@@ -212,11 +212,11 @@ export const translations = {
 
   zh: {
     nav: {
-      works: '作品',
+      works: '经历',
       about: '关于',
       contact: '联系',
       menu: '菜单',
-      openWorks: '作品目录',
+      openWorks: '经历目录',
       skipToContent: '跳到主要内容',
       languageButton: 'Switch to English',
     },
@@ -359,7 +359,7 @@ export const translations = {
     detail: { open: '查看项目', close: '关闭详情', role: '本人角色', work: '工作与背景', results: '成果', share: '复制项目链接', copied: '链接已复制', copyFailed: '复制失败，可使用地址栏中的项目链接。', official: '品牌官方配图', personal: '个人摄影', previous: '上一张照片', next: '下一张照片', language: 'Switch to English', websiteContext: '图片为官网项目素材，并非上线页面截图。', publishedContext: '发布视频节选，完整内容见原文链接。' },
     about: {
       index: '06',
-      title: '一个人，三项手艺',
+      title: 'Three ways to make technology visible',
       capabilities: [
         { title: '品牌传播', desc: '科技品牌公关、内容运营与活动传播，把复杂产品讲清楚、传出去。' },
         { title: '影像创作', desc: '摄影摄像 —— 把实验室、道路与机器人变成被人记住的画面。' },

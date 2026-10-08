@@ -54,11 +54,9 @@ export default function QCraftSection() {
     <section id="qcraft" className="bg-paper text-ink">
       {/* 章节头 */}
       <div className="mx-auto w-full max-w-content px-5 pb-14 pt-24 md:px-8 md:pb-20 md:pt-32">
-        <img src="/assets-v2/brands/qcraft-logo.png" alt={q.brandAlt} className="h-8 w-auto md:h-9" loading="lazy" decoding="async" />
-        <p className="eyebrow mt-8 text-qc-deep">{t.common.chapter} {q.index}</p>
-        <h2 className="chapter-title mt-3">
-          {q.brand}
-          <span className="ml-3 align-middle text-[16px] font-semibold text-ink-faint md:text-[18px]">{q.brandZh}</span>
+        <p className="eyebrow text-qc-deep">{t.common.chapter} {q.index}</p>
+        <h2 className="mt-5" aria-label={q.brand}>
+          <img src="/assets-v2/brands/qcraft-logo.png" alt={q.brandAlt} className="chapter-brand-logo" loading="lazy" decoding="async" />
         </h2>
         <p className="mt-4 text-[17px] font-medium text-ink-soft md:text-lg">
           {q.role} · {q.period}
@@ -141,7 +139,7 @@ export default function QCraftSection() {
       </div>
 
       {/* 运营与传播条目 */}
-      <div className="mx-auto w-full max-w-content px-5 pb-24 pt-6 md:px-8 md:pb-32">
+      <div className="mx-auto w-full max-w-content px-5 pb-10 pt-6 md:px-8 md:pb-12">
         {q.entries.map((e, index) => (
           <article key={e.title} className="grid gap-3 border-t border-line py-9 md:grid-cols-12 md:gap-8">
             <h3 className="text-[21px] font-bold md:col-span-4 md:text-[24px]">{e.title}</h3>

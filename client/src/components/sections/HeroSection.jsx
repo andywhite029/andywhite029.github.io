@@ -14,28 +14,26 @@ function scrollToId(id) {
   scrollToSection(id)
 }
 
-/** 首屏底部的品牌目录：真实 Logo + 名称，已建成的章节可点击跳转。 */
+/** 首屏底部的品牌 Logo 目录，可点击跳转章节。 */
 function BrandStrip() {
   const { language } = useLanguage()
-  const t = translations[language]
   const BUILT = ['guanglun', 'qcraft', 'momenta', 'zeekr', 'xiaomi']
   // 白色图形版本的 Logo 需要深色底衬才能在浅色条上显示
   const DARK_CHIP = ['guanglun', 'zeekr']
 
   return (
     <div className="border-t border-white/10 bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-content items-center gap-5 overflow-x-auto px-5 md:px-8">
-        <span className="eyebrow whitespace-nowrap text-ink-faint">{t.hero.stripLabel}</span>
-        <ul className="flex items-center gap-6 md:gap-9">
+      <div className="mx-auto flex h-16 max-w-[960px] items-center px-4 md:px-8">
+        <ul className="brand-strip-list">
           {BRAND_STRIP.map((b) => {
             const inner = (
               <>
                 {DARK_CHIP.includes(b.id) ? (
-                  <span className="flex h-9 items-center rounded-lg bg-gl-night px-3">
+                  <span className={`brand-strip-logo-slot brand-strip-logo-slot--${b.id} flex items-center justify-center rounded bg-gl-night`}>
                     <img
                       src={b.logo}
                       alt={b.logoAlt[language]}
-                      className="h-4 w-auto max-w-[96px] object-contain md:h-[18px]"
+                      className={`brand-strip-logo brand-strip-logo--${b.id} object-contain`}
                       loading="eager"
                       decoding="async"
                     />
@@ -44,16 +42,15 @@ function BrandStrip() {
                   <img
                     src={b.logo}
                     alt={b.logoAlt[language]}
-                    className="h-5 w-auto max-w-[110px] object-contain md:h-6"
+                    className={`brand-strip-logo brand-strip-logo--${b.id} object-contain`}
                     loading="eager"
                     decoding="async"
                   />
                 )}
-                <span className="whitespace-nowrap text-[13px] font-medium text-ink-soft">{b.name[language]}</span>
               </>
             )
             return (
-              <li key={b.id} className="flex shrink-0 items-center">
+              <li key={b.id} className="flex min-w-0 items-center justify-center">
                 {BUILT.includes(b.id) ? (
                   <a
                     href={`#${b.id}`}
@@ -61,12 +58,12 @@ function BrandStrip() {
                       e.preventDefault()
                       scrollToId(b.id)
                     }}
-                    className="flex items-center gap-2 opacity-80 transition-opacity hover:opacity-100"
+                    className="flex min-h-11 w-full items-center justify-center opacity-80 transition-opacity hover:opacity-100"
                   >
                     {inner}
                   </a>
                 ) : (
-                  <span className="flex items-center gap-2 opacity-55">{inner}</span>
+                  <span className="flex w-full items-center justify-center opacity-55">{inner}</span>
                 )}
               </li>
             )
@@ -125,14 +122,15 @@ export default function HeroSection() {
           invalidateOnRefresh: true,
         },
       })
-      tl.to(mediaRef.current, { scale: 1.06, duration: 1 }, 0)
-        .to(layerARef.current, { opacity: 0, y: -48, duration: 0.4 }, 0.04)
-        .to(veilRef.current, { opacity: 1, duration: 0.45 }, 0.22)
+      // 时间线尾部保留阅读距离，介绍完全显示后再离开 sticky 舞台。
+      tl.to(mediaRef.current, { scale: 1.06, duration: 2 }, 0)
+        .to(layerARef.current, { opacity: 0, y: -48, duration: 0.4 }, 0.3)
+        .to(veilRef.current, { opacity: 1, duration: 0.45 }, 0.48)
         .fromTo(
           layerBRef.current,
           { opacity: 0, y: 44 },
           { opacity: 1, y: 0, duration: 0.35 },
-          0.58,
+          0.88,
         )
     }, sectionRef)
     return () => ctx.revert()
@@ -145,7 +143,7 @@ export default function HeroSection() {
       id="andy"
       ref={sectionRef}
       className="relative"
-      style={{ height: expanded ? '190vh' : '100svh' }}
+      style={{ height: expanded ? '300vh' : '100svh' }}
     >
       <div className="sticky top-0 h-screen overflow-hidden bg-gl-night">
         {/* 背景影像（首屏与转场共用同一画面） */}
@@ -204,17 +202,18 @@ export default function HeroSection() {
           <div ref={layerBRef} className="absolute inset-0 flex items-center opacity-0">
             <div className="mx-auto w-full max-w-content px-5 md:px-8">
               <div className="max-w-2xl">
-              <img
-                src="/assets-v2/brands/guanglun-logo.png"
-                alt={g.brandAlt}
-                className="h-7 w-auto md:h-8"
-                loading="lazy"
-                decoding="async"
-              />
-              <p className="eyebrow mt-8 text-gl-mist">
+              <p className="eyebrow text-gl-mist">
                 {t.common.chapter} {g.index}
               </p>
-              <h2 className="chapter-title mt-3 text-white">{g.brand}</h2>
+              <h2 className="mt-5" aria-label={g.brand}>
+                <img
+                  src="/assets-v2/brands/guanglun-logo.png"
+                  alt={g.brandAlt}
+                  className="chapter-brand-logo"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </h2>
               <p className="mt-4 text-[17px] font-medium text-gl-silver/90 md:text-lg">
                 {g.role} · {g.period}
               </p>

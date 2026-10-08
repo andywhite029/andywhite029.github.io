@@ -2,6 +2,11 @@
   "generated": "阶段一 + 阶段二",
   "items": [
     {
+      "output": "brands/momenta-mask.svg",
+      "source": "brands/momenta.png",
+      "spec": "Local vector trace of 549x67 alpha silhouette using Potrace, threshold 128, optTolerance 0.15; white mask paths, not an official vector master"
+    },
+    {
       "output": "qcraft/qcraft-live-home.webp",
       "source": "https://www.qcraft.ai/en",
       "captured": "2026-10-07",

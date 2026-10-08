@@ -18,9 +18,10 @@ function HeaderBlock() {
   const g = translations[language].guanglun
   return (
     <div className="mx-auto w-full max-w-content px-5 pb-16 pt-24 md:px-8 md:pb-24 md:pt-32">
-      <img src="/assets-v2/brands/guanglun-logo.png" alt={g.brandAlt} className="h-7 w-auto md:h-8" loading="lazy" decoding="async" />
-      <p className="eyebrow mt-8 text-gl-mist">{translations[language].common.chapter} {g.index}</p>
-      <h2 className="chapter-title mt-3 text-white">{g.brand}</h2>
+      <p className="eyebrow text-gl-mist">{translations[language].common.chapter} {g.index}</p>
+      <h2 className="mt-5" aria-label={g.brand}>
+        <img src="/assets-v2/brands/guanglun-logo.png" alt={g.brandAlt} className="chapter-brand-logo" loading="lazy" decoding="async" />
+      </h2>
       <p className="mt-4 text-[17px] font-medium text-gl-silver/90 md:text-lg">
         {g.role} · {g.period}
       </p>
@@ -82,7 +83,7 @@ function ProjectEntry({ project, index }) {
 
 /**
  * 光轮智能章节：深空蓝紫暗色世界。
- * 桌面动效版含一个短距离粘性影像舞台：作品画面 → 我的职责 → 项目入口。
+ * 桌面动效版含粘性影像舞台，各文字状态预留阅读距离。
  */
 export default function GuanglunSection() {
   const { language } = useLanguage()
@@ -130,8 +131,10 @@ export default function GuanglunSection() {
         .to(scrimRef.current, { opacity: 0.72, duration: 0.15 }, 0.6)
         .fromTo(dutiesRef.current, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.16 }, 0.62)
         // 状态三：项目入口
-        .to(dutiesRef.current, { opacity: 0, y: -22, duration: 0.1 }, 0.8)
-        .fromTo(projectsRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.18 }, 0.86)
+        .to(dutiesRef.current, { opacity: 0, y: -22, duration: 0.1 }, 1.2)
+        .fromTo(projectsRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.18 }, 1.26)
+        // 显示完入口后继续保持，避免淡入结束就被带出视口。
+        .to(projectsRef.current, { opacity: 1, duration: 0.4 }, 1.44)
     }, stageRef)
     return () => ctx.revert()
   }, [expanded])
@@ -183,8 +186,8 @@ export default function GuanglunSection() {
 
   return (
     <section id="guanglun" className="bg-gl-night text-gl-silver">
-      {/* 粘性影像舞台：约 3 屏的滚动距离 */}
-      <div ref={stageRef} className="relative" style={{ height: '300vh' }}>
+      {/* 增加的行程用于文字停留，保留原有影像切换速度。 */}
+      <div ref={stageRef} className="relative" style={{ height: '460vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden">
           <LoopVideo
             src="/assets-v2/guanglun/robostack-stage.mp4"
