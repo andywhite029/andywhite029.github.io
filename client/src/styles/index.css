@@ -354,12 +354,16 @@ section { scroll-margin-top: 56px; }
   overflow: hidden;
   perspective: 900px;
   perspective-origin: 50% 46%;
-  background: radial-gradient(ellipse at 50% 50%, #120a3a 0%, #07031a 62%);
+  background:
+    radial-gradient(ellipse at 50% 50%, rgb(124 92 255 / 0.16), transparent 58%),
+    radial-gradient(ellipse at 50% 118%, rgb(21 204 138 / 0.12), transparent 62%),
+    radial-gradient(ellipse at 50% 50%, #120a3a 0%, #07031a 62%);
 }
 
 .tunnel-world {
   position: absolute;
   inset: 0;
+  z-index: 1;
   transform-style: preserve-3d;
 }
 
@@ -371,9 +375,12 @@ section { scroll-margin-top: 56px; }
   height: min(48vh, 460px);
   margin-left: calc(min(74vw, 880px) / -2);
   margin-top: calc(min(48vh, 460px) / -2);
-  border: 1px solid currentColor;
+  border: 2px solid currentColor;
   border-radius: 28px;
-  box-shadow: 0 0 34px -10px currentColor;
+  background: radial-gradient(ellipse at 50% 50%, rgb(255 255 255 / 0.035), transparent 72%);
+  box-shadow:
+    0 0 64px -14px currentColor,
+    inset 0 0 52px -28px currentColor;
   will-change: transform, opacity;
 }
 

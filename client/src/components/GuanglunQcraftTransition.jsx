@@ -9,7 +9,7 @@ import { useIsMobile } from '../hooks/useIsMobile'
 gsap.registerPlugin(ScrollTrigger)
 
 const CENTER_LINE = 'inset(calc(50% - 1px) 6% calc(50% - 1px) 6%)'
-const RING_COUNT = 14
+const RING_COUNT = 16
 const RINGS = Array.from({ length: RING_COUNT }, (_, index) => index)
 
 /**
