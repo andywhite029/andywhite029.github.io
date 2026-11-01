@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LanguageContext'
 import { translations } from '../../data/translations'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { useIsMobile } from '../../hooks/useIsMobile'
+import { SplitReveal } from '../../motion'
 import { ProjectLink } from '../ProjectDetails'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -31,7 +32,9 @@ function BrandHeading({ brand, logo }) {
       </h2>
     </> : <>
       <div className="flex items-center justify-between gap-6"><img src={`/assets-v2/brands/${logo}`} alt={b.brand} className="brand-logo" loading="lazy" /><p className="eyebrow">{t.common.chapter} {b.index}</p></div>
-      <h2 className="chapter-title mt-8">{b.brand}</h2>
+      <SplitReveal as="h2" className="chapter-title mt-8" stagger={0.022}>
+        {b.brand}
+      </SplitReveal>
     </>}
     <p className="mt-4 text-lg">{b.role} · {b.period}</p>
     <p className="mt-5 max-w-2xl leading-relaxed opacity-80">{b.intro}</p>

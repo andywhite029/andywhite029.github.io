@@ -30,6 +30,7 @@ export default {
       },
       fontFamily: {
         sans: ['"Source Sans 3"', '"Noto Sans SC"', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       maxWidth: {
         content: '1200px',

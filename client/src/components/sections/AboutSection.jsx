@@ -1,5 +1,6 @@
 import { useLanguage } from '../../context/LanguageContext'
 import { translations } from '../../data/translations'
+import { SplitReveal } from '../../motion'
 import PhotographySection from './PhotographySection'
 
 /** 关于：三项能力 + 一段自述 + 两行早期经历（安静的文字版面）。 */
@@ -15,7 +16,9 @@ export default function AboutSection() {
         <p className="eyebrow text-ink-faint">
           {t.common.chapter} {a.index}
         </p>
-        <h2 className="chapter-title mt-3 max-w-2xl">{a.title}</h2>
+        <SplitReveal as="h2" className="chapter-title mt-3 max-w-2xl" stagger={0.018}>
+          {a.title}
+        </SplitReveal>
 
         <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
           {a.capabilities.map((c, i) => (

@@ -9,6 +9,8 @@
   --momenta-blue: #0068df;
   --xiaomi-orange: #ff6900;
   --qc-green: #15cc8a;
+  --signal: #7c5cff;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
 * {
@@ -224,3 +226,220 @@ section { scroll-margin-top: 56px; }
   .detail-copy { grid-template-columns: 1fr; gap: 8px; }
   .photo-detail { padding: 20px; }
 }
+
+/* =============================================================
+   2026 视觉升级：入场序列 / CSS 3D 光带隧道 / 自定义光标 / 首屏分层
+   ============================================================= */
+
+/* 技术标签：等宽字体 + 大字距，全站统一的小号标注语言 */
+.tech-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+/* CursorHalo 启用自定义光标时隐藏原生光标；触摸/粗指针不会加这个 class */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* ---------- 入场序列 ---------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  overflow: hidden;
+  background: var(--gl-night);
+  color: var(--gl-silver);
+}
+
+.preloader-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background: #07031a;
+  will-change: transform;
+}
+
+.preloader-panel--top {
+  top: 0;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.07);
+}
+
+.preloader-panel--bottom {
+  bottom: 0;
+}
+
+.preloader-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px 22px 26px;
+}
+
+.preloader-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(255 255 255 / 0.45);
+}
+
+.preloader-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+
+.preloader-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.preloader-word {
+  font-size: clamp(64px, 16vw, 176px);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+}
+
+.preloader-tagline {
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.42);
+}
+
+.preloader-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.preloader-track {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background: rgb(255 255 255 / 0.16);
+  overflow: hidden;
+}
+
+.preloader-bar {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--gl-blue), var(--signal));
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+@media (min-width: 768px) {
+  .preloader-content {
+    padding: 30px 38px 34px;
+  }
+}
+
+/* ---------- 光带隧道转场（CSS 3D，无 WebGL 开销） ---------- */
+.tunnel-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 900px;
+  perspective-origin: 50% 46%;
+  background: radial-gradient(ellipse at 50% 50%, #120a3a 0%, #07031a 62%);
+}
+
+.tunnel-world {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.tunnel-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(74vw, 880px);
+  height: min(48vh, 460px);
+  margin-left: calc(min(74vw, 880px) / -2);
+  margin-top: calc(min(48vh, 460px) / -2);
+  border: 1px solid currentColor;
+  border-radius: 28px;
+  box-shadow: 0 0 34px -10px currentColor;
+  will-change: transform, opacity;
+}
+
+.tunnel-glow {
+  position: absolute;
+  inset: -12%;
+  background: radial-gradient(circle at 50% 50%, rgb(65 35 245 / 0.5), transparent 58%);
+  filter: blur(6px);
+  will-change: transform, opacity;
+}
+
+/* ---------- 首屏分层入场 ---------- */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.mask-line > span {
+  display: block;
+  will-change: transform;
+}
+
+.hero-webgl {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-webgl canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* 深色首屏上的进度轴：差值混合保证明暗章节都清晰 */
+.rail-blend {
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+/* 首屏滚动提示的流动短线 */
+.cue-track {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 48px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 0.22);
+}
+
+.cue-track::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: cue-slide 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes cue-slide {
+  0% {
+    transform: translateY(-100%);
+  }
+  55%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+

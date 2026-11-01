@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
-import { translations, SECTIONS } from '../data/translations'
+import { SECTIONS } from '../data/translations'
 import { useActiveSection } from '../hooks/useActiveSection'
 
 const SECTION_IDS = SECTIONS.map((s) => s.id)
@@ -11,7 +11,6 @@ const SECTION_IDS = SECTIONS.map((s) => s.id)
  */
 export default function ProgressRail() {
   const { language } = useLanguage()
-  const t = translations[language]
   const active = useActiveSection(SECTION_IDS)
   const [progress, setProgress] = useState(0)
 
@@ -38,19 +37,22 @@ export default function ProgressRail() {
   const current = SECTIONS.find((s) => s.id === active)
 
   return (
-    <div className="pointer-events-none fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 items-center gap-3 lg:flex" aria-hidden="true">
-      <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-faint [writing-mode:vertical-rl]">
-        {current ? current.label[language] : ''}
-      </span>
-      <div className="relative h-40 w-px bg-ink/15">
-        <div
-          className="absolute left-0 top-0 w-px bg-ink transition-[height] duration-150 ease-out"
-          style={{ height: `${progress * 100}%` }}
-        />
+    <div className="pointer-events-none fixed right-5 top-1/2 z-40 hidden -translate-y-1/2 lg:block">
+      <div className="rail-blend flex items-center gap-3">
+        <span className="tech-label [writing-mode:vertical-rl]">
+          {current ? current.label[language] : ''}
+        </span>
+        <div className="relative h-44 w-px bg-white/30" aria-hidden="true">
+          <div
+            className="absolute left-0 top-0 w-px bg-white transition-[height] duration-150 ease-out"
+            style={{ height: `${progress * 100}%` }}
+          />
+        </div>
+        <span className="tech-label tabular-nums [writing-mode:vertical-rl]">
+          {String((SECTIONS.findIndex(s => s.id === active) ?? 0) + 1).padStart(2, '0')} /{' '}
+          {String(SECTIONS.length).padStart(2, '0')}
+        </span>
       </div>
-      <span className="text-[11px] tabular-nums text-ink-faint [writing-mode:vertical-rl]">
-        {t.common.chapter} {String((SECTIONS.findIndex((s) => s.id === active) ?? 0) + 1).padStart(2, '0')} / {String(SECTIONS.length).padStart(2, '0')}
-      </span>
     </div>
   )
 }

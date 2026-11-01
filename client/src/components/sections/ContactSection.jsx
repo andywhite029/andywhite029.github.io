@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 import { translations } from '../../data/translations'
+import { Magnetic, SplitReveal } from '../../motion'
 
 /** 联系：真实邮箱（复制有反馈）+ GitHub，不出现占位社交链接。 */
 export default function ContactSection() {
@@ -25,21 +26,26 @@ export default function ContactSection() {
         <p className="eyebrow text-paper/50">
           {t.common.chapter} {c.index}
         </p>
-        <h2 className="chapter-title mt-3 text-paper">{c.title}</h2>
+        <SplitReveal as="h2" className="chapter-title mt-3 text-paper" stagger={0.018}>
+          {c.title}
+        </SplitReveal>
         <p className="mt-6 max-w-xl leading-relaxed text-paper/70">{c.desc}</p>
 
         <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-          <a
-            href={`mailto:${c.email}`}
-            onClick={copyEmail}
-            className="inline-flex items-center justify-center gap-3 rounded-full bg-paper px-7 py-4 text-[16px] font-semibold text-ink transition-transform hover:scale-[1.02]"
-          >
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
-              <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            {c.email}
-          </a>
+          <Magnetic strength={0.18}>
+            <a
+              href={`mailto:${c.email}`}
+              onClick={copyEmail}
+              data-cursor="hover"
+              className="inline-flex items-center justify-center gap-3 rounded-full bg-paper px-7 py-4 text-[16px] font-semibold text-ink transition-transform hover:scale-[1.02]"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
+                <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {c.email}
+            </a>
+          </Magnetic>
           <button
             type="button"
             onClick={copyEmail}

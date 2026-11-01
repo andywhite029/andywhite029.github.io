@@ -6,6 +6,7 @@ import { translations } from '../../data/translations'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { useIsMobile } from '../../hooks/useIsMobile'
 import { scrollToSection } from '../../hooks/useLenis'
+import { Tilt3D } from '../../motion'
 import { LoopVideo, PlayOnDemandVideo } from '../Media'
 import { ProjectLink } from '../ProjectDetails'
 
@@ -36,14 +37,14 @@ function ProjectEntry({ project, index }) {
   return (
     <article id={ENTRY_IDS[index]} className="grid scroll-mt-24 gap-7 border-t border-white/10 py-10 md:grid-cols-12 md:gap-10 md:py-14">
       <div className="md:col-span-5">
-        <div className="aspect-video w-full">
+        <Tilt3D className="aspect-video w-full overflow-hidden rounded-sm" max={6} glare={false}>
           <PlayOnDemandVideo
             src={project.video}
             poster={project.poster}
             alt={project.videoAlt}
             playLabel={`${t.common.clickToPlay} — ${project.title}`}
           />
-        </div>
+        </Tilt3D>
       </div>
       <div className="md:col-span-7">
         <div className="flex flex-wrap items-center gap-3">

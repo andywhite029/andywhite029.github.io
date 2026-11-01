@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLanguage } from '../../context/LanguageContext'
 import { translations } from '../../data/translations'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { SplitReveal, Tilt3D } from '../../motion'
 import { ProjectLink } from '../ProjectDetails'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -94,9 +95,13 @@ export default function QCraftSection() {
               <span className="rounded-full bg-qc-green px-3 py-1 text-[12px] font-bold uppercase tracking-[0.18em] text-white">
                 {q.websiteCase.kicker}
               </span>
-              <h3 className="mt-4 max-w-2xl text-[28px] font-bold leading-tight text-white [text-wrap:balance] md:text-[44px]">
+              <SplitReveal
+                as="h3"
+                className="mt-4 max-w-2xl text-[28px] font-bold leading-tight text-white md:text-[44px]"
+                stagger={0.016}
+              >
                 {q.websiteCase.title}
-              </h3>
+              </SplitReveal>
               <p className="mt-4 max-w-xl leading-relaxed text-white/85">{q.websiteCase.desc}</p>
               <div><ProjectLink id="qcraft-website" className="mt-5 text-white" /></div>
               <a
@@ -118,10 +123,12 @@ export default function QCraftSection() {
       {/* 官网真实素材 */}
       <div className="mx-auto w-full max-w-content px-5 py-14 md:px-8 md:py-20">
         <div className="grid gap-6 md:grid-cols-2 md:gap-8">
-          {caseImgs.map((img) => (
-            <figure key={img.src}>
-              <img src={img.src} alt={img.alt} className="w-full" loading="lazy" decoding="async" />
-            </figure>
+          {caseImgs.map(img => (
+            <Tilt3D key={img.src} className="overflow-hidden" max={5}>
+              <figure>
+                <img src={img.src} alt={img.alt} className="w-full" loading="lazy" decoding="async" />
+              </figure>
+            </Tilt3D>
           ))}
         </div>
       </div>

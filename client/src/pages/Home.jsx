@@ -1,5 +1,7 @@
 import TopNav from '../components/TopNav'
 import ProgressRail from '../components/ProgressRail'
+import Preloader from '../components/Preloader'
+import { CursorHalo, FilmGrain } from '../motion'
 import HeroSection from '../components/sections/HeroSection'
 import GuanglunSection from '../components/sections/GuanglunSection'
 import GuanglunQcraftTransition from '../components/GuanglunQcraftTransition'
@@ -12,6 +14,11 @@ import ProjectDetails from '../components/ProjectDetails'
 export default function Home() {
   return (
     <div className="min-h-screen bg-paper font-sans text-ink">
+      <Preloader />
+      <CursorHalo />
+      <div data-film-grain>
+        <FilmGrain zIndex={55} />
+      </div>
       <TopNav />
       <ProgressRail />
       <main id="main">

@@ -202,6 +202,15 @@ export const translations = {
       tagline: 'Through Technology',
       rights: 'All rights reserved.',
     },
+    ui: {
+      introTag: 'Portfolio 2026',
+      loading: 'Loading',
+      scroll: 'Scroll',
+      drag: 'Drag to spin',
+      galleryLabel: 'Photography carousel',
+      previous: 'Previous',
+      next: 'Next',
+    },
     common: {
       viewOriginal: 'View original',
       publishedBadge: 'Published video',
@@ -387,6 +396,15 @@ export const translations = {
     footer: {
       tagline: '穿行于科技品牌之间',
       rights: '保留所有权利。',
+    },
+    ui: {
+      introTag: '作品集 2026',
+      loading: '载入中',
+      scroll: '向下滚动',
+      drag: '拖拽旋转',
+      galleryLabel: '摄影作品展廊',
+      previous: '上一张',
+      next: '下一张',
     },
     common: {
       viewOriginal: '查看原文',

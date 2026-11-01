@@ -3,7 +3,7 @@
 ## 当前架构
 
 React 18 + Vite 5 + Tailwind CSS 3 的双语单页作品集，部署到 GitHub Pages。
-当前设计为 Through Technology 品牌叙事，旧版暗房、终端、Three.js 背景组件已经移除。
+当前设计为 Through Technology 品牌叙事（真实影像 + 技术叠加层）；旧版暗房/终端主题组件已移除，但首屏重新引入了 three.js（`src/three/HeroScene.jsx`，按需加载）。
 设计方案在 `docs/网站全新设计方案.md`；方案描述目标，不能据此宣称功能已验收。
 
 页面顺序为 Hero（andy）、Lightwheel（guanglun）、QCraft（qcraft）、Momenta、Zeekr、Xiaomi、About、Contact。
@@ -33,6 +33,10 @@ npm run preview
 - `src/components/Media.jsx`：可见性控制的循环视频、点击后才挂载的案例视频。
 - `src/data/translations.js`：全部中英文内容、稳定案例标识、摄影顺序。
 - `src/styles/index.css` / `tailwind.config.js`：全局布局和品牌配色。
+- `src/components/Preloader.jsx` + `src/lib/intro.js`：会话级入场序列与完成信号（幕布、计数）。
+- `src/three/HeroScene.jsx`：首屏 WebGL 场景（视频纹理 + 粒子场），WebGL 不可用/reduced-motion 时整体让位给原生视频；由 `HeroSection` 用 `React.lazy` 加载。
+- `src/motion/`：GSAP 动效组件库（SplitReveal、Tilt3D、Magnetic、CursorHalo、FilmGrain、ScrollCue、Reveal），统一走 `useReducedMotion` + `gsap.context` 清理。
+- `src/gallery/`：3D 摄影展廊（拖拽旋转、←/→、点击打开详情）与移动端网格降级；`PhotographySection` 负责接 `#photo/<id>`。
 
 ## 导航和详情
 
@@ -66,7 +70,8 @@ GSAP 使用 context / matchMedia 并在 effect cleanup revert。
 ES Module；组件用 JSX，数据和纯逻辑用 JS。沿用现有 Tailwind 与品牌变量。
 Prettier：无分号、单引号、2 空格、100 字符行宽。避免全仓格式化造成无关改动。
 外链使用 target="_blank" 和 rel="noopener noreferrer"。
-当前无自动化测试套件；发布前跑 lint/build，并实际浏览桌面和手机页面。
+当前无自动化测试套件；发布前跑 lint/build，并用无头 Chrome + CDP 脚本冒烟（章节渲染、canvas/WebGL、详情打开与 Escape、语言切换、减少动画、390px 手机布局、运行时控制台报错）。
+本机 esbuild 构建若报临时文件 `Access is denied`，把 `TEMP`/`TMP` 指向仓库内可写目录（如 `.tmp/`）后重试。
 覆盖案例/摄影入口、历史导航、键盘、双语、菜单、滚动转场、减少动画、慢网络、视频失败、LCP/CLS。
 只报告实际执行的检查；未完成项目写入验收记录。
 
